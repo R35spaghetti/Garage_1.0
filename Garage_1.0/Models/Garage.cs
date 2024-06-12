@@ -1,4 +1,5 @@
-﻿using Garage_1._0.Models.Contracts;
+﻿using System.Collections;
+using Garage_1._0.Models.Contracts;
 
 namespace Garage_1._0.Models;
 
@@ -26,9 +27,10 @@ public class Garage<T> : IGarage<T> where T : IVehicle
         _vehicles = new T[garageSize];
     }
 
-    public IEnumerator<T> GetEnumerator()
+    public IEnumerator GetEnumerator()
     {
-        return _vehicles.GetEnumerator() as IEnumerator<T> ?? throw new InvalidOperationException();
+        return _vehicles.GetEnumerator();
     }
+
 
 }
