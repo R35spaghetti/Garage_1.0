@@ -35,7 +35,7 @@ public class GarageHandler : IGarageHandler
 
     public void ShowVehicleTypes(string vehicleType)
     {
-        var vehicleTypes = _Garage.Vehicles.Where(x=>x.GetType().Name == vehicleType);
+        var vehicleTypes = _Garage.Vehicles.Where(x => x!= null && x.GetType().Name == vehicleType);
         var theVehicleType = vehicleTypes.GetEnumerator();
         while (theVehicleType.MoveNext())
         {
