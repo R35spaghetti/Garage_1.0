@@ -77,11 +77,6 @@ public class GarageHandler : IGarageHandler
         _Garage.Vehicles[1] = car2;    
     }
 
-    public void PopulateGarage()
-    {
-        throw new NotImplementedException();
-    }
-
     public void FindNumberPlate()
     {
         throw new NotImplementedException();
