@@ -1,22 +1,34 @@
-﻿using System.Collections;
-using Garage_1._0.Models.Contracts;
+﻿using Garage_1._0.Models.Contracts;
 
 namespace Garage_1._0.Models;
 
-public class Garage<T> : IEnumerable where T : IVehicle
+public class Garage<T> : IGarage<T> where T : IVehicle
 {
-    private int GarageSize { get; set; }
-    private readonly T[] Vehicles;
+    private int _garageSize {get; set; }
+    private T[] _vehicles { get; set; }
+
+
+    public int GarageSize
+    {
+        get => _garageSize;
+        set => _garageSize = value;
+    }
+
+    public T[] Vehicles
+    {
+        get => _vehicles;
+        set => _vehicles = value;
+    }
 
     public Garage(int garageSize)
     {
-        GarageSize = garageSize;
-        Vehicles = new T[garageSize];
+        _garageSize = garageSize;
+        _vehicles = new T[garageSize];
     }
 
-    public IEnumerator GetEnumerator()
-    {
-        return Vehicles.GetEnumerator();
-    }
+     public IEnumerator<T> GetEnumerator()
+     {
+         return _vehicles.AsEnumerable().GetEnumerator();
+     }
     
 }
