@@ -6,7 +6,7 @@ public interface IGarageHandler
     void ShowVehicleTypes();
     void AddVehicle<T>(T vehicle);
     void RemoveVehicle();
-    int SetGarageCapacity();
+    void SetGarageCapacity(int size);
     void PopulateGarage();
     void FindNumberPlate();
     void FindVehicle();

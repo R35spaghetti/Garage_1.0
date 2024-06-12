@@ -48,9 +48,9 @@ public class GarageHandler : IGarageHandler
         throw new NotImplementedException();
     }
 
-    public void SetGarageCapacity()
-    { 
-        throw new NotImplementedException();
+    public void SetGarageCapacity(int size)
+    {
+        _Garage.GarageSize = size;
     }
 
     public void PopulateGarage()
