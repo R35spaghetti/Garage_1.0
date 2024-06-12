@@ -38,6 +38,11 @@ public class GarageHandler : IGarageHandler
         throw new NotImplementedException();
     }
 
+    public void AddVehicle<T>(T vehicle)
+    {
+        throw new NotImplementedException();
+    }
+
     public void RemoveVehicle()
     {
         throw new NotImplementedException();
