@@ -51,9 +51,17 @@ public class GarageHandler : IGarageHandler
         }
     }
 
-    public void AddVehicle<T>(T vehicle)
+    public void AddVehicle<T>(T vehicle) where T : Vehicle
     {
-        throw new NotImplementedException();
+        int values = _Garage.GarageSize;
+        for(int i = 0; i < values; i++)
+        {
+            if (_Garage.Vehicles[i] == null)
+            {
+                _Garage.Vehicles.SetValue(vehicle,i);
+
+            }
+        }
     }
 
     public void RemoveVehicle()
