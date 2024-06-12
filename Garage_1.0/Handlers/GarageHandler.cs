@@ -1,4 +1,5 @@
-﻿using Garage_1._0.Handlers.Contracts;
+﻿using System.Collections;
+using Garage_1._0.Handlers.Contracts;
 using Garage_1._0.Models;
 using Garage_1._0.Models.Contracts;
 
@@ -15,9 +16,22 @@ public class GarageHandler : IGarageHandler
     }
 
     
-    public void ShowAllVehicles<T>(Garage<T> garage) where T : IVehicle
+    public void ShowAllVehicles()
     {
-        throw new NotImplementedException();
+        IEnumerator enumerator = _Garage.GetEnumerator();
+
+        while (enumerator.MoveNext())
+        {
+            try
+            {
+                var currentVehicle = enumerator.Current;
+                Console.WriteLine(currentVehicle); 
+            }
+            catch (InvalidCastException)
+            {
+                Console.WriteLine("Vehicle not found");
+            }
+        }
     }
 
     public void ShowVehicleTypes()
