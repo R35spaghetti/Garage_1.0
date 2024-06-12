@@ -1,10 +1,21 @@
 ﻿using Garage_1._0.Handlers.Contracts;
+using Garage_1._0.Models;
+using Garage_1._0.Models.Contracts;
 
 namespace Garage_1._0.Handlers;
 
 public class GarageHandler : IGarageHandler
 {
-    public void ShowAllVehicles()
+    
+    private Garage<Vehicle> _Garage { get;}
+
+    public GarageHandler(Garage<Vehicle> garage)
+    {
+        _Garage = garage;
+    }
+
+    
+    public void ShowAllVehicles<T>(Garage<T> garage) where T : IVehicle
     {
         throw new NotImplementedException();
     }
