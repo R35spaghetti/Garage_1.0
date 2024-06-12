@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using Garage_1._0.Handlers.Contracts;
 using Garage_1._0.Models;
-using Garage_1._0.Models.Contracts;
 
 namespace Garage_1._0.Handlers;
 
@@ -44,9 +43,33 @@ public class GarageHandler : IGarageHandler
         throw new NotImplementedException();
     }
 
-    public int SetGarageCapacity()
-    {
+    public void SetGarageCapacity()
+    { 
         throw new NotImplementedException();
+    }
+
+    public void PopulateGarage()
+    {
+        var car1 = new Vehicle
+        {
+            NumberPlate = "ABC123",
+            Colour = "Red",
+            FuelType = "Gasoline",
+            Wheels = 4,
+            Year = 2020
+        };
+
+        var car2 = new Car("four-wheel driven")
+        {
+            NumberPlate = "DEF456",
+            Colour = "Blue",
+            FuelType = "Electric",
+            Wheels = 4,
+            Year = 2021
+        };
+
+        _Garage.Vehicles[0] = car1;
+        _Garage.Vehicles[1] = car2;    
     }
 
     public void PopulateGarage()
