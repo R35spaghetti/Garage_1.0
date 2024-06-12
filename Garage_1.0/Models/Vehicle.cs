@@ -9,4 +9,13 @@ public class Vehicle : IVehicle
     public string FuelType { get; set; }
     public int Wheels { get; set; }
     public int Year { get; set; }
+
+    public override string ToString()
+    {
+        return $" Numberplate: {NumberPlate}\n" +
+               $"Colour: {Colour}\n" +
+               $"Fuel type: {FuelType}\n" +
+               $"Wheels: {Wheels}\n" +
+               $"Year {Year}";
+    }
 }

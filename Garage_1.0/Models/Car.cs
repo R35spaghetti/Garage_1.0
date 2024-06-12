@@ -8,5 +8,14 @@ public class Car : Vehicle
     {
         EngineLayout = engineLayout;
     }
+    public override string ToString()
+    {
+        return $" Numberplate: {NumberPlate}\n" +
+               $"Colour: {Colour}\n" +
+               $"Fuel type: {FuelType}\n" +
+               $"Wheels: {Wheels}\n" +
+               $"Year: {Year}\n" +
+               $"Engine layout: {EngineLayout}";
+    }
 
 }
