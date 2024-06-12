@@ -26,9 +26,9 @@ public class Garage<T> : IGarage<T> where T : IVehicle
         _vehicles = new T[garageSize];
     }
 
-     public IEnumerator<T> GetEnumerator()
-     {
-         return _vehicles.AsEnumerable().GetEnumerator();
-     }
-    
+    public IEnumerator<T> GetEnumerator()
+    {
+        return _vehicles.GetEnumerator() as IEnumerator<T> ?? throw new InvalidOperationException();
+    }
+
 }
