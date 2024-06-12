@@ -33,9 +33,22 @@ public class GarageHandler : IGarageHandler
         }
     }
 
-    public void ShowVehicleTypes()
+    public void ShowVehicleTypes(string vehicleType)
     {
-        throw new NotImplementedException();
+        var vehicleTypes = _Garage.Vehicles.Where(x=>x.GetType().Name == vehicleType);
+        var theVehicleType = vehicleTypes.GetEnumerator();
+        while (theVehicleType.MoveNext())
+        {
+            try
+            {
+                var currentVehicle = theVehicleType.Current;
+                Console.WriteLine(currentVehicle); 
+            }
+            catch (InvalidCastException)
+            {
+                Console.WriteLine("Vehicle not found");
+            }
+        }
     }
 
     public void AddVehicle<T>(T vehicle)
