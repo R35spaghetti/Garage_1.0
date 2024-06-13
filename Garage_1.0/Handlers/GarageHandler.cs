@@ -120,7 +120,7 @@ public class GarageHandler : IGarageHandler
         switch (garageOptions)
         {
             case GarageOptions.Type:
-            FilterVehicles(vehicles => vehicles.Where(x => x!= null && x.GetType() == typeof(Car)));
+            FilterVehicles(vehicles => vehicles.Where(x => x!= null && x.GetType().Equals(searchTerm)));
             break;
             case GarageOptions.Colour: 
                 FilterVehicles(vehicles => vehicles.Where(x => x.Colour != null && x.Colour.Equals(searchTerm)));
