@@ -63,9 +63,18 @@ public class GarageHandler : IGarageHandler
         }
     }
 
-    public void RemoveVehicle()
+    public void RemoveVehicle(string numberPlate)
     {
-        throw new NotImplementedException();
+        int indexes = _Garage.GarageSize;
+        for (int i = 0; i < indexes; i++)
+        {
+            if (numberPlate.Equals(_Garage.Vehicles[i].NumberPlate))
+            {
+                _Garage.Vehicles.SetValue(null, i);
+                break;
+            }
+        }
+        
     }
 
     public void SetGarageCapacity(int size)

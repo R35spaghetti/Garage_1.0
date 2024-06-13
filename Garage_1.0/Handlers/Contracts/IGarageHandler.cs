@@ -7,7 +7,7 @@ public interface IGarageHandler
     void ShowAllVehicles();
     void ShowVehicleTypes(string vehicleType);
     void AddVehicle<T>(T vehicle) where T : Vehicle;
-    void RemoveVehicle();
+    void RemoveVehicle(string numberPlate);
     void SetGarageCapacity(int size);
     void PopulateGarage();
     void FindNumberPlate(string numberPlate);
