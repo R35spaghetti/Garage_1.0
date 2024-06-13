@@ -8,7 +8,9 @@ public class GarageHandler : IGarageHandler
 {
     
     private Garage<Vehicle> _Garage { get;}
-
+    
+    private delegate IEnumerable<Vehicle> VehicleFilter(IEnumerable<Vehicle> vehicles);
+    
     public GarageHandler(Garage<Vehicle> garage)
     {
         _Garage = garage;
@@ -111,8 +113,18 @@ public class GarageHandler : IGarageHandler
         Console.WriteLine(_Garage.Vehicles.FirstOrDefault(x => x.NumberPlate.Equals(numberPlate)));
     }
 
-    public void FindVehicle()
+    public void FindVehicle(string searchTerm)
     {
-        throw new NotImplementedException();
+        FilterVehicles(vehicles => vehicles.Where(x => x!= null && x.GetType() == typeof(Car)));
+        
     }
+    private void FilterVehicles(VehicleFilter filter)
+    {
+        var filteredVehicles = filter(_Garage.Vehicles);
+        foreach (var vehicle in filteredVehicles)
+        {
+            Console.WriteLine($"{vehicle}");
+        }
+    }
+
 }

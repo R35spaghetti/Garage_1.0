@@ -11,5 +11,5 @@ public interface IGarageHandler
     void SetGarageCapacity(int size);
     void PopulateGarage();
     void FindNumberPlate(string numberPlate);
-    void FindVehicle();
+    void FindVehicle(string searchTerm);
 }
