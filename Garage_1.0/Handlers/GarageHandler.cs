@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Garage_1._0.Enums;
 using Garage_1._0.Handlers.Contracts;
 using Garage_1._0.Models;
 
@@ -113,9 +114,30 @@ public class GarageHandler : IGarageHandler
         Console.WriteLine(_Garage.Vehicles.FirstOrDefault(x => x.NumberPlate.Equals(numberPlate)));
     }
 
-    public void FindVehicle(string searchTerm)
+    public void FindVehicle<T>(GarageOptions searchOption, T searchTerm)
     {
-        FilterVehicles(vehicles => vehicles.Where(x => x!= null && x.GetType() == typeof(Car)));
+        GarageOptions garageOptions = searchOption;
+        switch (garageOptions)
+        {
+            case GarageOptions.Type:
+            FilterVehicles(vehicles => vehicles.Where(x => x!= null && x.GetType() == typeof(Car)));
+            break;
+            case GarageOptions.Colour: 
+                FilterVehicles(vehicles => vehicles.Where(x => x.Colour != null && x.Colour.Equals(searchTerm)));
+                break;
+            case GarageOptions.FuelType:
+                FilterVehicles(vehicles => vehicles.Where(x => x!= null && x.FuelType.Equals(searchTerm)));
+                break;
+            case GarageOptions.Wheels:
+                FilterVehicles(vehicles => vehicles.Where(x => x.Wheels.Equals(searchTerm)));
+                break;
+            case GarageOptions.Year:
+                FilterVehicles(vehicles => vehicles.Where(x => x.Year.Equals(searchTerm)));
+                break;
+            default:
+                Console.WriteLine("Invalid selection");
+                break;
+        }
         
     }
     private void FilterVehicles(VehicleFilter filter)
