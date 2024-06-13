@@ -10,6 +10,6 @@ public interface IGarageHandler
     void RemoveVehicle();
     void SetGarageCapacity(int size);
     void PopulateGarage();
-    void FindNumberPlate();
+    void FindNumberPlate(string numberPlate);
     void FindVehicle();
 }

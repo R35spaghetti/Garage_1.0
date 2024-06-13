@@ -32,7 +32,6 @@ public class GarageHandler : IGarageHandler
             }
         }
     }
-
     public void ShowVehicleTypes(string vehicleType)
     {
         var vehicleTypes = _Garage.Vehicles.Where(x => x!= null && x.GetType().Name == vehicleType);
@@ -98,9 +97,9 @@ public class GarageHandler : IGarageHandler
         _Garage.Vehicles[1] = car2;    
     }
 
-    public void FindNumberPlate()
+    public void FindNumberPlate(string numberPlate)
     {
-        throw new NotImplementedException();
+        Console.WriteLine(_Garage.Vehicles.FirstOrDefault(x => x.NumberPlate.Equals(numberPlate)));
     }
 
     public void FindVehicle()
