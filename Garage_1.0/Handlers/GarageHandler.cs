@@ -1,6 +1,7 @@
 ﻿using Garage_1._0.Enums;
 using Garage_1._0.Handlers.Contracts;
 using Garage_1._0.Models;
+using Garage_1._0.UserInteraction;
 
 namespace Garage_1._0.Handlers;
 
@@ -114,31 +115,51 @@ public class GarageHandler : IGarageHandler
         Console.WriteLine(_garage.Vehicles.FirstOrDefault(x => x.NumberPlate != null && x.NumberPlate.Equals(numberPlate)));
     }
 
-    public void FindVehicle<T>(GarageOptions searchOption, T searchTerm)
+    public void FindVehicle()
     {
-        GarageOptions garageOptions = searchOption;
-        switch (garageOptions)
+        Console.WriteLine("Simple(1) or Advanced(2)"); //foo
+        int menu = UserInput.GetUserInput<int>();
+        string strTerm = "";
+        int intNumber = 0;
+        if (menu == 1)
         {
-            case GarageOptions.Type:
-            FilterVehicles(vehicles => vehicles.Where(x => x!= null && x.GetType().Equals(searchTerm)));
-            break;
-            case GarageOptions.Colour: 
-                FilterVehicles(vehicles => vehicles.Where(x => x.Colour != null && x.Colour.Equals(searchTerm)));
-                break;
-            case GarageOptions.FuelType:
-                FilterVehicles(vehicles => vehicles.Where(x => x.FuelType != null && x!= null && x.FuelType.Equals(searchTerm)));
-                break;
-            case GarageOptions.Wheels:
-                FilterVehicles(vehicles => vehicles.Where(x => x.Wheels.Equals(searchTerm)));
-                break;
-            case GarageOptions.Year:
-                FilterVehicles(vehicles => vehicles.Where(x => x.Year.Equals(searchTerm)));
-                break;
-            default:
-                Console.WriteLine("Invalid selection");
-                break;
+            Console.WriteLine("What value to filter"); //foo
+            GarageOptions.VehicleAttributes vehicleAttributes = UserInput.GetInputEnum<GarageOptions.VehicleAttributes>();
+            
+            Console.WriteLine("What specifically"); //foo
+            if (vehicleAttributes == GarageOptions.VehicleAttributes.Wheels ||
+                vehicleAttributes == GarageOptions.VehicleAttributes.Year)
+            {
+                intNumber = UserInput.GetUserInput<int>();
+            }
+            else
+            {
+                strTerm = UserInput.GetUserInput<string>();
+            }
+
+            switch (vehicleAttributes)
+            {
+                case GarageOptions.VehicleAttributes.Colour:
+                    FilterVehicles(vehicles => vehicles.Where(x => x.Colour != null && x.Colour.Equals(strTerm)));
+                    break;
+                case GarageOptions.VehicleAttributes.FuelType:
+                    FilterVehicles(vehicles => vehicles.Where(x => x.FuelType != null && x.FuelType.Equals(strTerm)));
+                    break;
+                case GarageOptions.VehicleAttributes.Wheels:
+                    FilterVehicles(vehicles => vehicles.Where(x => x.Wheels.Equals(intNumber)));
+                    break;
+                case GarageOptions.VehicleAttributes.Year:
+                    FilterVehicles(vehicles => vehicles.Where(x => x.Year.Equals(intNumber)));
+                    break;
+                default:
+                    Console.WriteLine("Invalid selection");
+                    break;
+            }
         }
-        
+        else if (menu == 2)
+        {
+            //TODO
+        }
     }
     private void FilterVehicles(VehicleFilter filter)
     {
