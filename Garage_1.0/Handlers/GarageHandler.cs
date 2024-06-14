@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using Garage_1._0.Enums;
+﻿using Garage_1._0.Enums;
 using Garage_1._0.Handlers.Contracts;
 using Garage_1._0.Models;
 
@@ -8,36 +7,37 @@ namespace Garage_1._0.Handlers;
 public class GarageHandler : IGarageHandler
 {
     
-    private Garage<Vehicle> _Garage { get;}
+    private Garage<Vehicle> _garage { get;}
     
     private delegate IEnumerable<Vehicle> VehicleFilter(IEnumerable<Vehicle> vehicles);
     
     public GarageHandler(Garage<Vehicle> garage)
     {
-        _Garage = garage;
+        _garage = garage;
     }
 
     
     public void ShowAllVehicles()
     {
-        IEnumerator enumerator = _Garage.GetEnumerator();
-
-        while (enumerator.MoveNext())
+        var enumerateVehicles = _garage.GetEnumerator();
+        using var disposeEnumerator = enumerateVehicles as IDisposable;
+        while (enumerateVehicles.MoveNext())
         {
             try
             {
-                var currentVehicle = enumerator.Current;
-                Console.WriteLine(currentVehicle); 
+                var currentVehicle = enumerateVehicles.Current;
+                Console.WriteLine(currentVehicle);
             }
             catch (InvalidCastException)
             {
                 Console.WriteLine("Vehicle not found");
             }
         }
+        
     }
     public void ShowVehicleTypes(string vehicleType)
     {
-        var vehicleTypes = _Garage.Vehicles.Where(x => x!= null && x.GetType().Name == vehicleType);
+        var vehicleTypes = _garage.Vehicles.Where(x => x!= null && x.GetType().Name == vehicleType);
         var theVehicleType = vehicleTypes.GetEnumerator();
         while (theVehicleType.MoveNext())
         {
@@ -55,12 +55,12 @@ public class GarageHandler : IGarageHandler
 
     public void AddVehicle<T>(T vehicle) where T : Vehicle
     {
-        int values = _Garage.GarageSize;
+        int values = _garage.GarageSize;
         for(int i = 0; i < values; i++)
         {
-            if (_Garage.Vehicles[i] == null)
+            if (_garage.Vehicles[i] == null)
             {
-                _Garage.Vehicles.SetValue(vehicle,i);
+                _garage.Vehicles.SetValue(vehicle,i);
 
             }
         }
@@ -68,12 +68,12 @@ public class GarageHandler : IGarageHandler
 
     public void RemoveVehicle(string numberPlate)
     {
-        int indexes = _Garage.GarageSize;
+        int indexes = _garage.GarageSize;
         for (int i = 0; i < indexes; i++)
         {
-            if (numberPlate.Equals(_Garage.Vehicles[i].NumberPlate))
+            if (numberPlate.Equals(_garage.Vehicles[i].NumberPlate))
             {
-                _Garage.Vehicles.SetValue(null, i);
+                _garage.Vehicles.SetValue(null, i);
                 break;
             }
         }
@@ -82,7 +82,7 @@ public class GarageHandler : IGarageHandler
 
     public void SetGarageCapacity(int size)
     {
-        _Garage.GarageSize = size;
+        _garage.GarageSize = size;
     }
 
     public void PopulateGarage()
@@ -105,13 +105,13 @@ public class GarageHandler : IGarageHandler
             Year = 2021
         };
 
-        _Garage.Vehicles[0] = car1;
-        _Garage.Vehicles[1] = car2;    
+        _garage.Vehicles[0] = car1;
+        _garage.Vehicles[1] = car2;    
     }
 
     public void FindNumberPlate(string numberPlate)
     {
-        Console.WriteLine(_Garage.Vehicles.FirstOrDefault(x => x.NumberPlate.Equals(numberPlate)));
+        Console.WriteLine(_garage.Vehicles.FirstOrDefault(x => x.NumberPlate != null && x.NumberPlate.Equals(numberPlate)));
     }
 
     public void FindVehicle<T>(GarageOptions searchOption, T searchTerm)
@@ -126,7 +126,7 @@ public class GarageHandler : IGarageHandler
                 FilterVehicles(vehicles => vehicles.Where(x => x.Colour != null && x.Colour.Equals(searchTerm)));
                 break;
             case GarageOptions.FuelType:
-                FilterVehicles(vehicles => vehicles.Where(x => x!= null && x.FuelType.Equals(searchTerm)));
+                FilterVehicles(vehicles => vehicles.Where(x => x.FuelType != null && x!= null && x.FuelType.Equals(searchTerm)));
                 break;
             case GarageOptions.Wheels:
                 FilterVehicles(vehicles => vehicles.Where(x => x.Wheels.Equals(searchTerm)));
@@ -142,7 +142,7 @@ public class GarageHandler : IGarageHandler
     }
     private void FilterVehicles(VehicleFilter filter)
     {
-        var filteredVehicles = filter(_Garage.Vehicles);
+        var filteredVehicles = filter(_garage.Vehicles);
         foreach (var vehicle in filteredVehicles)
         {
             Console.WriteLine($"{vehicle}");
