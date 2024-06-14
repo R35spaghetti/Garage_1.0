@@ -1,4 +1,5 @@
-﻿using Garage_1._0.Enums;
+﻿using System.Collections;
+using Garage_1._0.Enums;
 using Garage_1._0.Handlers.Contracts;
 using Garage_1._0.Models;
 using Garage_1._0.UserInteraction;
@@ -36,21 +37,38 @@ public class GarageHandler : IGarageHandler
         }
         
     }
-    public void ShowVehicleTypes(string vehicleType)
+
+    public void ShowVehicleTypes()
     {
-        var vehicleTypes = _garage.Vehicles.Where(x => x!= null && x.GetType().Name == vehicleType);
-        var theVehicleType = vehicleTypes.GetEnumerator();
-        while (theVehicleType.MoveNext())
+        var cars = _garage.Vehicles.OfType<Car>();
+        var mcs = _garage.Vehicles.OfType<Motorcycle>();
+        IEnumerable<object> vehiclesInGarage = new IEnumerable[] { cars, mcs };
+        int amountCars = cars.Count();
+        int amountMcs = mcs.Count();
+        try
         {
-            try
+            Console.WriteLine($"Cars:{amountCars}\n" +
+                              $"Motorcycles:{amountMcs}\n" +
+                              $"_______________________");
+            foreach (var garageTypes in vehiclesInGarage)
             {
-                var currentVehicle = theVehicleType.Current;
-                Console.WriteLine(currentVehicle); 
+               
+                foreach (var currentVehicle in (IEnumerable)garageTypes)
+                {
+                    if (currentVehicle is Car)
+                    {
+                        Console.WriteLine($"{currentVehicle}\n");
+                    }
+                    else if (currentVehicle is Motorcycle)
+                    {
+                        Console.WriteLine($"{currentVehicle}\n");
+                    }
+                }
             }
-            catch (InvalidCastException)
-            {
-                Console.WriteLine("Vehicle not found");
-            }
+        }
+        catch (InvalidCastException)
+        {
+            Console.WriteLine("Vehicle not found");
         }
     }
 
