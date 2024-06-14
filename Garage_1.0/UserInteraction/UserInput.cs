@@ -5,7 +5,7 @@ public static class UserInput
     public static T GetUserInput<T>()
     {
         Console.WriteLine("Enter value: ");
-        string input = Console.ReadLine() ?? string.Empty;
+        var input = Console.ReadLine() ?? string.Empty;
         return (T)Convert.ChangeType(input, typeof(T));
     }
 }
