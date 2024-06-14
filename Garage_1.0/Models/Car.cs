@@ -10,7 +10,8 @@ public class Car : Vehicle
     }
     public override string ToString()
     {
-        return $" Numberplate: {NumberPlate}\n" +
+        return $"Car\n" +
+               $"Numberplate: {NumberPlate}\n" +
                $"Colour: {Colour}\n" +
                $"Fuel type: {FuelType}\n" +
                $"Wheels: {Wheels}\n" +

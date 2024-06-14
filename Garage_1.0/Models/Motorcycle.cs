@@ -11,7 +11,8 @@ public class Motorcycle : Vehicle
 
     public override string ToString()
     {
-        return $" Numberplate: {NumberPlate}\n" +
+        return $"Motorcycle\n" +
+               $"Numberplate: {NumberPlate}\n" +
                $"Colour: {Colour}\n" +
                $"Fuel type: {FuelType}\n" +
                $"Wheels: {Wheels}\n" +
