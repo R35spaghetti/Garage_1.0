@@ -106,8 +106,58 @@ public class GarageHandler : IGarageHandler
             Year = 2021
         };
 
+        var car3 = new Car("Manual Transmission")
+        {
+            NumberPlate = "GHI789",
+            Colour = "Red",
+            FuelType = "Petrol",
+            Wheels = 4,
+            Year = 2019
+        };
+
+        var car4 = new Car("Automatic Transmission")
+        {
+            NumberPlate = "JKL012",
+            Colour = "Black",
+            FuelType = "Diesel",
+            Wheels = 4,
+            Year = 2020
+        };
+        var motorcycle1 = new Motorcycle(100)
+        {
+            NumberPlate = "MNO345",
+            Colour = "White",
+            FuelType = "Gasoline",
+            Wheels = 2,
+            Year = 2022
+        };
+
+        var motorcycle2 = new Motorcycle(200)
+        {
+            NumberPlate = "PQR678",
+            Colour = "Silver",
+            FuelType = "Hybrid",
+            Wheels = 2,
+            Year = 2018
+        };
+
+        var motorcycle3 = new Motorcycle(300)
+        {
+            NumberPlate = "STU901",
+            Colour = "Yellow",
+            FuelType = "Electric",
+            Wheels = 2,
+            Year = 2023
+        };
+
+
         _garage.Vehicles[0] = car1;
         _garage.Vehicles[1] = car2;    
+        _garage.Vehicles[2] = car3;    
+        _garage.Vehicles[3] = car4;    
+        _garage.Vehicles[4] = motorcycle1;    
+        _garage.Vehicles[5] = motorcycle2;    
+        _garage.Vehicles[6] = motorcycle3;    
     }
 
     public void FindNumberPlate(string numberPlate)
