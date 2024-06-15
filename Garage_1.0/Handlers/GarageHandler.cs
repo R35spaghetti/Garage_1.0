@@ -11,7 +11,7 @@ public class GarageHandler : IGarageHandler
     
     private Garage<Vehicle> _garage { get;}
     
-    private delegate IEnumerable<Vehicle> VehicleFilter(IEnumerable<Vehicle> vehicles);
+    private delegate void VehicleFilter(Dictionary<string, string> filters);
     
     public GarageHandler(Garage<Vehicle> garage)
     {
@@ -276,7 +276,7 @@ public class GarageHandler : IGarageHandler
             userInput["Wheels"] = wheels;
             userInput["Year"] = year;
             userInput["EngineLayout"] = engineLayout;
-            FilterVehicles(userInput);
+            ApplyVehicleFilters(userInput);
         }
 
         if (vehicleTypes == GarageOptions.VehicleTypes.Motorcycle)
@@ -326,7 +326,7 @@ public class GarageHandler : IGarageHandler
             userInput["Wheels"] = wheels;
             userInput["Year"] = year;
             userInput["Length"] = length;
-            FilterVehicles(userInput);
+            ApplyVehicleFilters(userInput);
         }
 
 
@@ -341,7 +341,12 @@ public class GarageHandler : IGarageHandler
         }
         return numbers;
     }
-    
+    private void ApplyVehicleFilters(Dictionary<string, string> filters)
+    {
+        VehicleFilter filterDelegate = FilterVehicles;
+
+        filterDelegate(filters);
+    }
     private void FilterVehicles(Dictionary<string, string> filters)
     {
         var filteredVehicles = _garage.Vehicles.OfType<Vehicle>().Where(vehicle =>
