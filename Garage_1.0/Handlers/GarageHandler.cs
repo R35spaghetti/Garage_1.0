@@ -236,6 +236,22 @@ public class GarageHandler : IGarageHandler
         {
             Console.WriteLine($"{vehicle}");
         }
+    }    
+    private void FilterCar(VehicleFilter filter)
+    {
+        var filteredVehicles = filter(_garage.Vehicles.OfType<Car>());
+        foreach (var vehicle in filteredVehicles)
+        {
+            Console.WriteLine($"{vehicle}");
+        }
+    }   
+    private void FilterMC(VehicleFilter filter)
+    {
+        var filteredVehicles = filter(_garage.Vehicles.OfType<Motorcycle>());
+        foreach (var vehicle in filteredVehicles)
+        {
+            Console.WriteLine($"{vehicle}");
+        }
     }
 
 }
