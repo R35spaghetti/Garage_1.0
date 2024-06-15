@@ -236,22 +236,20 @@ public class GarageHandler : IGarageHandler
         {
             Console.WriteLine($"{vehicle}");
         }
-    }    
-    private void FilterCar(VehicleFilter filter)
-    {
-        var filteredVehicles = filter(_garage.Vehicles.OfType<Car>());
-        foreach (var vehicle in filteredVehicles)
-        {
-            Console.WriteLine($"{vehicle}");
-        }
-    }   
-    private void FilterMC(VehicleFilter filter)
-    {
-        var filteredVehicles = filter(_garage.Vehicles.OfType<Motorcycle>());
+    }
+
+    private void FilterVehicles(Dictionary<string, string> filters)
+    { 
+             
+        var filteredVehicles = _garage.Vehicles.OfType<Vehicle>().Where(vehicle =>
+            filters.All(filter =>
+                string.IsNullOrEmpty(filter.Value) ||
+                vehicle.GetType().GetProperty(filter.Key)?.GetValue(vehicle, null)?.ToString() == filter.Value));
+
         foreach (var vehicle in filteredVehicles)
         {
             Console.WriteLine($"{vehicle}");
         }
     }
-
+    
 }
