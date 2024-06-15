@@ -185,85 +185,41 @@ public class GarageHandler : IGarageHandler
 
     public void FindVehicle()
     {
-        Console.WriteLine("Simple(1) or Advanced(2)"); //foo
-        int menu = UserInput.GetUserInput<int>();
-        string strTerm = "";
-        int intNumber = 0;
-        if (menu == 1)
-        {
-            Console.WriteLine("What value to filter"); //foo
-            GarageOptions.VehicleAttributes vehicleAttributes = UserInput.GetInputEnum<GarageOptions.VehicleAttributes>();
-            
-            Console.WriteLine("What specifically"); //foo
-            if (vehicleAttributes == GarageOptions.VehicleAttributes.Wheels ||
-                vehicleAttributes == GarageOptions.VehicleAttributes.Year)
-            {
-                intNumber = UserInput.GetUserInput<int>();
-            }
-            else
-            {
-                strTerm = UserInput.GetUserInput<string>();
-            }
+        Console.WriteLine("What vehicle to filter"); //foo
+        GarageOptions.VehicleTypes vehicleTypes = UserInput.GetInputEnum<GarageOptions.VehicleTypes>();
+        string answer;
+        List<char> options = new List<char>();
 
-            switch (vehicleAttributes)
-            {
-                case GarageOptions.VehicleAttributes.Colour:
-                    FilterVehiclesSingleValues(vehicles => vehicles.Where(x => x.Colour != null && x.Colour.Equals(strTerm)));
-                    break;
-                case GarageOptions.VehicleAttributes.FuelType:
-                    FilterVehiclesSingleValues(vehicles => vehicles.Where(x => x.FuelType != null && x.FuelType.Equals(strTerm)));
-                    break;
-                case GarageOptions.VehicleAttributes.Wheels:
-                    FilterVehiclesSingleValues(vehicles => vehicles.Where(x => x.Wheels.Equals(intNumber)));
-                    break;
-                case GarageOptions.VehicleAttributes.Year:
-                    FilterVehiclesSingleValues(vehicles => vehicles.Where(x => x.Year.Equals(intNumber)));
-                    break;
-                default:
-                    Console.WriteLine("Invalid selection");
-                    break;
-            }
-        }
-        else if (menu == 2)
+        switch (vehicleTypes)
         {
-            Console.WriteLine("What vehicle to filter"); //foo
-            GarageOptions.VehicleTypes vehicleTypes = UserInput.GetInputEnum<GarageOptions.VehicleTypes>();
-            string answer;
-            List<char> options = new List<char>();
-            
-            switch (vehicleTypes)
-            {
-                
-                
-                case GarageOptions.VehicleTypes.Car:
-                    Console.WriteLine("What filters do you want to use?\n" +
-                                      "1. Colour\n" +
-                                      "2. Fuel type\n" +
-                                      "3. Wheels\n" +
-                                      "4. Year\n" +
-                                      "5. Engine layout");
-                    answer = UserInput.GetUserInput<string>();
-                    options = IterateThroughOptions(answer);
-                    ApplyGarageFilterOptions(options,vehicleTypes);
-                    break;
-                               
-                case GarageOptions.VehicleTypes.Motorcycle:
-                    Console.WriteLine("What filters do you want to use?\n" +
-                                      "1. Colour\n" +
-                                      "2. Fuel type\n" +
-                                      "3. Wheels\n" +
-                                      "4. Year\n" +
-                                      "5. Length");
-                    answer = UserInput.GetUserInput<string>();
-                    options = IterateThroughOptions(answer);
-                    ApplyGarageFilterOptions(options, vehicleTypes); 
-                    break;
-                
-                
-                    default:
+            case GarageOptions.VehicleTypes.Car:
+                Console.WriteLine("What filters do you want to use?\n" +
+                                  "1. Colour\n" +
+                                  "2. Fuel type\n" +
+                                  "3. Wheels\n" +
+                                  "4. Year\n" +
+                                  "5. Engine layout");
+                answer = UserInput.GetUserInput<string>();
+                options = IterateThroughOptions(answer);
+                ApplyGarageFilterOptions(options, vehicleTypes);
+                break;
+
+            case GarageOptions.VehicleTypes.Motorcycle:
+                Console.WriteLine("What filters do you want to use?\n" +
+                                  "1. Colour\n" +
+                                  "2. Fuel type\n" +
+                                  "3. Wheels\n" +
+                                  "4. Year\n" +
+                                  "5. Length");
+                answer = UserInput.GetUserInput<string>();
+                options = IterateThroughOptions(answer);
+                ApplyGarageFilterOptions(options, vehicleTypes);
+                break;
+
+
+            default:
                 Console.WriteLine("Invalid selection");
                 break;
-            }
         }
     }
 
@@ -320,7 +276,7 @@ public class GarageHandler : IGarageHandler
             userInput["Wheels"] = wheels;
             userInput["Year"] = year;
             userInput["EngineLayout"] = engineLayout;
-            FilterVehiclesMoreValues(userInput);
+            FilterVehicles(userInput);
         }
 
         if (vehicleTypes == GarageOptions.VehicleTypes.Motorcycle)
@@ -370,7 +326,7 @@ public class GarageHandler : IGarageHandler
             userInput["Wheels"] = wheels;
             userInput["Year"] = year;
             userInput["Length"] = length;
-            FilterVehiclesMoreValues(userInput);
+            FilterVehicles(userInput);
         }
 
 
@@ -386,18 +342,8 @@ public class GarageHandler : IGarageHandler
         return numbers;
     }
     
-    private void FilterVehiclesSingleValues(VehicleFilter filter)
+    private void FilterVehicles(Dictionary<string, string> filters)
     {
-        var filteredVehicles = filter(_garage.Vehicles);
-        foreach (var vehicle in filteredVehicles)
-        {
-            Console.WriteLine($"{vehicle}");
-        }
-    }
-
-    private void FilterVehiclesMoreValues(Dictionary<string, string> filters)
-    { 
-             
         var filteredVehicles = _garage.Vehicles.OfType<Vehicle>().Where(vehicle =>
             filters.All(filter =>
                 string.IsNullOrEmpty(filter.Value) ||
