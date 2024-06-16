@@ -4,11 +4,11 @@ using Garage_1._0.UserInteraction;
 
 namespace Garage_1._0.Features;
 
-public class GarageObjectFilter
+public class GarageUserFilter
 {
     private readonly GarageFilters _garageFilters;
 
-    public GarageObjectFilter(GarageFilters garageFilters)
+    public GarageUserFilter(GarageFilters garageFilters)
     {
         _garageFilters = garageFilters;
     }
