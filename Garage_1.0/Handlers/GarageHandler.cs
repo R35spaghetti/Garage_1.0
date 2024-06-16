@@ -14,13 +14,13 @@ public class GarageHandler : IGarageHandler
     private Garage<Vehicle> _garage { get;}
     private GarageFilters _garageFilters { get; }
     
-    private GarageUserFilter GarageUserFilter { get; }
+    private GarageUserFilter _garageUserFilter { get; }
     
     public GarageHandler(Garage<Vehicle> garage, GarageFilters garageFilters, GarageUserFilter garageUserFilter)
     {
         _garage = garage;
         _garageFilters = garageFilters;
-        GarageUserFilter = GarageUserFilter;
+        _garageUserFilter = garageUserFilter;
     }
 
     
@@ -207,8 +207,8 @@ public class GarageHandler : IGarageHandler
                                   "4. Year\n" +
                                   "5. Engine layout");
                 answer = UserInput.GetUserInput<string>();
-                options = GarageUserFilter.IterateThroughOptions(answer);
-               GarageUserFilter.ApplyGarageFilterOptions(options, vehicleTypes);
+                options = _garageUserFilter.IterateThroughOptions(answer);
+               _garageUserFilter.ApplyGarageFilterOptions(options, vehicleTypes);
                 break;
 
             case GarageOptions.VehicleTypes.Motorcycle:
@@ -219,8 +219,8 @@ public class GarageHandler : IGarageHandler
                                   "4. Year\n" +
                                   "5. Length");
                 answer = UserInput.GetUserInput<string>();
-                options = GarageUserFilter.IterateThroughOptions(answer);
-                GarageUserFilter.ApplyGarageFilterOptions(options, vehicleTypes);
+                options = _garageUserFilter.IterateThroughOptions(answer);
+                _garageUserFilter.ApplyGarageFilterOptions(options, vehicleTypes);
                 break;
 
 
