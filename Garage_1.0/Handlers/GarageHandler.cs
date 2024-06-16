@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Garage_1._0.Enums;
 using Garage_1._0.Handlers.Contracts;
+using Garage_1._0.Handlers.Delegates;
 using Garage_1._0.Models;
 using Garage_1._0.UserInteraction;
 
@@ -10,12 +11,12 @@ public class GarageHandler : IGarageHandler
 {
     
     private Garage<Vehicle> _garage { get;}
+    private GarageFilters _garageFilters { get; }
     
-    private delegate void VehicleFilter(Dictionary<string, string> filters);
-    
-    public GarageHandler(Garage<Vehicle> garage)
+    public GarageHandler(Garage<Vehicle> garage, GarageFilters garageFilters)
     {
         _garage = garage;
+        _garageFilters = garageFilters;
     }
 
     
@@ -276,7 +277,7 @@ public class GarageHandler : IGarageHandler
             userInput["Wheels"] = wheels;
             userInput["Year"] = year;
             userInput["EngineLayout"] = engineLayout;
-            ApplyVehicleFilters(userInput);
+            _garageFilters.ApplyVehicleFilters(userInput);
         }
 
         if (vehicleTypes == GarageOptions.VehicleTypes.Motorcycle)
@@ -326,12 +327,11 @@ public class GarageHandler : IGarageHandler
             userInput["Wheels"] = wheels;
             userInput["Year"] = year;
             userInput["Length"] = length;
-            ApplyVehicleFilters(userInput);
+           _garageFilters.ApplyVehicleFilters(userInput);
         }
 
 
     }
-
     private List<char> IterateThroughOptions(string answer)
     {
         List<char> numbers = new List<char>();        
@@ -341,23 +341,6 @@ public class GarageHandler : IGarageHandler
         }
         return numbers;
     }
-    private void ApplyVehicleFilters(Dictionary<string, string> filters)
-    {
-        VehicleFilter filterDelegate = FilterVehicles;
 
-        filterDelegate(filters);
-    }
-    private void FilterVehicles(Dictionary<string, string> filters)
-    {
-        var filteredVehicles = _garage.Vehicles.OfType<Vehicle>().Where(vehicle =>
-            filters.All(filter =>
-                string.IsNullOrEmpty(filter.Value) ||
-                vehicle.GetType().GetProperty(filter.Key)?.GetValue(vehicle, null)?.ToString() == filter.Value));
-
-        foreach (var vehicle in filteredVehicles)
-        {
-            Console.WriteLine($"{vehicle}");
-        }
-    }
     
 }
