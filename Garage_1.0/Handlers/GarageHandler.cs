@@ -43,9 +43,11 @@ public class GarageHandler : IGarageHandler
     {
         var cars = _garage.Vehicles.OfType<Car>();
         var mcs = _garage.Vehicles.OfType<Motorcycle>();
-        IEnumerable<object> vehiclesInGarage = new IEnumerable[] { cars, mcs };
-        int amountCars = cars.Count();
-        int amountMcs = mcs.Count();
+        var automobiles = cars as Car[] ?? cars.ToArray();
+        var motorcycles = mcs as Motorcycle[] ?? mcs.ToArray();
+        IEnumerable<object> vehiclesInGarage = new IEnumerable[] { automobiles, motorcycles };
+        int amountCars = automobiles.Count();
+        int amountMcs = motorcycles.Count();
         try
         {
             Console.WriteLine($"Cars:{amountCars}\n" +
