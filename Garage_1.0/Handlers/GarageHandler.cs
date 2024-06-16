@@ -12,14 +12,12 @@ public class GarageHandler : IGarageHandler
 {
     
     private Garage<Vehicle> _garage { get;}
-    private GarageFilters _garageFilters { get; }
     
     private GarageUserFilter _garageUserFilter { get; }
     
-    public GarageHandler(Garage<Vehicle> garage, GarageFilters garageFilters, GarageUserFilter garageUserFilter)
+    public GarageHandler(Garage<Vehicle> garage, GarageUserFilter garageUserFilter)
     {
         _garage = garage;
-        _garageFilters = garageFilters;
         _garageUserFilter = garageUserFilter;
     }
 
