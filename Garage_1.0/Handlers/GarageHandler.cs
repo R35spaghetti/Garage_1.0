@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Garage_1._0.Enums;
+using Garage_1._0.Features;
 using Garage_1._0.Handlers.Contracts;
 using Garage_1._0.Handlers.Delegates;
 using Garage_1._0.Models;
@@ -13,10 +14,13 @@ public class GarageHandler : IGarageHandler
     private Garage<Vehicle> _garage { get;}
     private GarageFilters _garageFilters { get; }
     
-    public GarageHandler(Garage<Vehicle> garage, GarageFilters garageFilters)
+    private GarageObjectFilter GarageObjectFilter { get; }
+    
+    public GarageHandler(Garage<Vehicle> garage, GarageFilters garageFilters, GarageObjectFilter garageObjectFilter)
     {
         _garage = garage;
         _garageFilters = garageFilters;
+        GarageObjectFilter = GarageObjectFilter;
     }
 
     
@@ -203,8 +207,8 @@ public class GarageHandler : IGarageHandler
                                   "4. Year\n" +
                                   "5. Engine layout");
                 answer = UserInput.GetUserInput<string>();
-                options = IterateThroughOptions(answer);
-                ApplyGarageFilterOptions(options, vehicleTypes);
+                options = GarageObjectFilter.IterateThroughOptions(answer);
+               GarageObjectFilter.ApplyGarageFilterOptions(options, vehicleTypes);
                 break;
 
             case GarageOptions.VehicleTypes.Motorcycle:
@@ -215,8 +219,8 @@ public class GarageHandler : IGarageHandler
                                   "4. Year\n" +
                                   "5. Length");
                 answer = UserInput.GetUserInput<string>();
-                options = IterateThroughOptions(answer);
-                ApplyGarageFilterOptions(options, vehicleTypes);
+                options = GarageObjectFilter.IterateThroughOptions(answer);
+                GarageObjectFilter.ApplyGarageFilterOptions(options, vehicleTypes);
                 break;
 
 
@@ -225,124 +229,4 @@ public class GarageHandler : IGarageHandler
                 break;
         }
     }
-
-    private void ApplyGarageFilterOptions(List<char> options, GarageOptions.VehicleTypes vehicleTypes)
-    {
-        string colour = "";
-        string fuelType = "";
-        string wheels = "";
-        string year = "";
-        if (vehicleTypes == GarageOptions.VehicleTypes.Car)
-        {
-            string engineLayout = "";
-
-
-            Dictionary<string, string> userInput = new Dictionary<string, string>
-            {
-                { "Colour", colour },
-                { "FuelType", fuelType },
-                { "Wheels", wheels },
-                { "Year", year },
-                { "EngineLayout", engineLayout }
-            };
-
-
-            foreach (var item in options)
-            {
-                switch (item)
-                {
-                    case '1':
-                        Console.WriteLine("Enter what colour to search");
-                        colour = UserInput.GetUserInput<string>();
-                        break;
-                    case '2':
-                        Console.WriteLine("Enter what fuel type to search");
-                        fuelType = UserInput.GetUserInput<string>();
-                        break;
-                    case '3':
-                        Console.WriteLine("Enter what wheels to search");
-                        wheels = UserInput.GetUserInput<int>().ToString();
-                        break;
-                    case '4':
-                        Console.WriteLine("Enter what year to search");
-                        year = UserInput.GetUserInput<int>().ToString();
-                        break;
-                    case '5':
-                        Console.WriteLine("Enter engine layout to search");
-                        engineLayout = UserInput.GetUserInput<string>();
-                        break;
-                }
-            }
-
-            userInput["Colour"] = colour;
-            userInput["FuelType"] = fuelType;
-            userInput["Wheels"] = wheels;
-            userInput["Year"] = year;
-            userInput["EngineLayout"] = engineLayout;
-            _garageFilters.ApplyVehicleFilters(userInput);
-        }
-
-        if (vehicleTypes == GarageOptions.VehicleTypes.Motorcycle)
-        {
-            string length = "";
-            
-            
-            Dictionary<string, string> userInput = new Dictionary<string, string>
-            {
-                { "Colour", colour },
-                { "FuelType", fuelType },
-                { "Wheels", wheels },
-                { "Year", year },
-                { "Length", length }
-            };
-
-
-            foreach (var item in options)
-            {
-                switch (item)
-                {
-                    case '1':
-                        Console.WriteLine("Enter what colour to search");
-                        colour = UserInput.GetUserInput<string>();
-                        break;
-                    case '2':
-                        Console.WriteLine("Enter what fuel type to search");
-                        fuelType = UserInput.GetUserInput<string>();
-                        break;
-                    case '3':
-                        Console.WriteLine("Enter what wheels to search");
-                        wheels = UserInput.GetUserInput<int>().ToString();
-                        break;
-                    case '4':
-                        Console.WriteLine("Enter what year to search");
-                        year = UserInput.GetUserInput<int>().ToString();
-                        break;
-                    case '5':
-                        Console.WriteLine("Enter length to search");
-                        length = UserInput.GetUserInput<int>().ToString();
-                        break;
-                }
-            }
-
-            userInput["Colour"] = colour;
-            userInput["FuelType"] = fuelType;
-            userInput["Wheels"] = wheels;
-            userInput["Year"] = year;
-            userInput["Length"] = length;
-           _garageFilters.ApplyVehicleFilters(userInput);
-        }
-
-
-    }
-    private List<char> IterateThroughOptions(string answer)
-    {
-        List<char> numbers = new List<char>();        
-        foreach (var item in answer)
-        {
-            numbers.Add(item);
-        }
-        return numbers;
-    }
-
-    
 }
