@@ -78,7 +78,7 @@ public class GarageHandler : IGarageHandler
 
     public void AddVehicle<T>() where T : Vehicle
     {
-        object? vehicle = null;
+        Vehicle? vehicle = null;
         Console.WriteLine("What vehicle to create?");
         GarageOptions.VehicleTypes vehicleToAdd = UserInput.GetInputEnum<GarageOptions.VehicleTypes>();
    
@@ -108,14 +108,13 @@ public class GarageHandler : IGarageHandler
                 break;
         }
         int values = _garage.GarageSize;
-        for(int i = 0; i < values; i++)
+        int? firstNullIndex = Enumerable.Range(0, values).FirstOrDefault(i => _garage.Vehicles[i] == null);
+
+        if (firstNullIndex.HasValue && firstNullIndex.Value < values)
         {
-            if (_garage.Vehicles[i] == null)
-            {
-                _garage.Vehicles.SetValue(vehicle,i);
-                break;
-            }
+            _garage.Vehicles[firstNullIndex.Value] = vehicle;
         }
+
     }
     
 
