@@ -43,7 +43,7 @@ public class InteractiveMenu
                     _garageHandler.RemoveVehicle(UserInput.GetUserInput<string>());
                     break;
                 case 4:
-                    _garageHandler.FindNumberPlate(UserInput.GetUserInput<string>());
+                    _garageHandler.FindNumberPlate(UserInput.GetUserInput<string>().ToUpper());
                     break;
                 case 5:
                     _garageHandler.FindVehicle();
