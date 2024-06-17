@@ -8,27 +8,35 @@ public static class UserInput
         bool isValid;
         do
         {
-            Console.WriteLine("Enter value: ");
+            Console.WriteLine($"Enter value of {typeof(T)}: ");
             input = Console.ReadLine();
 
-            isValid = ValidateUserInput(input);
+            isValid = ValidateUserInput(input, typeof(T));
+            try
+            {
+                input = (T)Convert.ChangeType(input, typeof(T));
+            }
+            catch
+            {
+                Console.WriteLine("Invalid format");
+                isValid = false;
+            }
         } while (!isValid);
 
+     
 
-        return (T)Convert.ChangeType(input, typeof(T));
+        return (T)input;
     }
 
-    private static bool ValidateUserInput<T>(T input)
+    private static bool ValidateUserInput<T>(T input, Type type)
     {
-        bool result = true;
-        var inputResult = Convert.ChangeType(input, typeof(T));
-        if (inputResult.Equals(string.Empty))
+        if (input.Equals(string.Empty) || input == null)
         {
-            result = false;
+            Console.WriteLine("Invalid format");
+            return false;
         }
-
-
-        return result;
+        
+        return true;
     }
 
     public static T GetInputEnum<T>() where T : struct, Enum
