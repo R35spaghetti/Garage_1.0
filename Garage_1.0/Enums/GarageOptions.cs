@@ -2,14 +2,6 @@
 
 public static class GarageOptions
 {
-    public enum VehicleAttributes
-    {
-        Colour,
-        FuelType,
-        Wheels,
-        Year
-    }
-
     public enum VehicleTypes
     {
         Car,
