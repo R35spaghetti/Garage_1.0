@@ -20,12 +20,12 @@ public class GarageUserFilter
         string wheels = "";
         string year = "";
 
-        if (vehicleTypes == GarageOptions.VehicleTypes.Car)
+        if (vehicleTypes == GarageOptions.VehicleTypes.CAR)
         {
             GarageFilterCar(colour, fuelType, wheels, year, options);
         }
 
-        if (vehicleTypes == GarageOptions.VehicleTypes.Motorcycle)
+        if (vehicleTypes == GarageOptions.VehicleTypes.MOTORCYCLE)
         {
             GarageFilterMC(colour, fuelType, wheels, year, options);
         }

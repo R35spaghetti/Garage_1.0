@@ -79,28 +79,15 @@ public class GarageHandler : IGarageHandler
     public void AddVehicle<T>() where T : Vehicle
     {
         Vehicle? vehicle = null;
-        Console.WriteLine("What vehicle to create?");
+        Console.WriteLine("You can add a motorcycle or a car, anything else will be interpreted as a car");
         GarageOptions.VehicleTypes vehicleToAdd = UserInput.GetInputEnum<GarageOptions.VehicleTypes>();
    
-        //foo
         switch (vehicleToAdd)
         {
-            case GarageOptions.VehicleTypes.Car:
-                Console.WriteLine("1. enter number plate" +
-                                  "2. Enter colour" +
-                                  "3. enter fuel type" +
-                                  "4. enter wheels" +
-                                  "5. enter year" +
-                                  "6. enter engine layout");
+            case GarageOptions.VehicleTypes.CAR:
                 vehicle = VehicleFactory.CreateVehicle<T>(vehicleToAdd);
                 break;
-            case GarageOptions.VehicleTypes.Motorcycle:
-                Console.WriteLine("1. enter number plate" +
-                                  "2. Enter colour" +
-                                  "3. enter fuel type" +
-                                  "4. enter wheels" +
-                                  "5. enter year" +
-                                  "6. enter length");
+            case GarageOptions.VehicleTypes.MOTORCYCLE:
                 vehicle = VehicleFactory.CreateVehicle<T>(vehicleToAdd);
                 break;
             default:
@@ -171,7 +158,7 @@ public class GarageHandler : IGarageHandler
 
         switch (vehicleTypes)
         {
-            case GarageOptions.VehicleTypes.Car:
+            case GarageOptions.VehicleTypes.CAR:
                 Console.WriteLine("What filters do you want to use?\n" +
                                   "1. Colour\n" +
                                   "2. Fuel type\n" +
@@ -183,7 +170,7 @@ public class GarageHandler : IGarageHandler
                _garageUserFilter.ApplyGarageFilterOptions(options, vehicleTypes);
                 break;
 
-            case GarageOptions.VehicleTypes.Motorcycle:
+            case GarageOptions.VehicleTypes.MOTORCYCLE:
                 Console.WriteLine("What filters do you want to use?\n" +
                                   "1. Colour\n" +
                                   "2. Fuel type\n" +

@@ -8,29 +8,37 @@ public static class VehicleFactory
 {
     public static T CreateVehicle<T>(GarageOptions.VehicleTypes vehicleType) where T : Vehicle
     {
-        if (vehicleType == GarageOptions.VehicleTypes.Car)
+
+        string? numberPlate;
+        do
         {
-            var car = new Car(
-                UserInput.GetUserInput<string>().ToUpper(),
-                UserInput.GetUserInput<string>(),
-                UserInput.GetUserInput<string>(),
-                UserInput.GetUserInput<int>(),
-                UserInput.GetUserInput<int>(),
-                UserInput.GetUserInput<string>()
-            );
+            Console.WriteLine("Enter a unique number plate:");
+            numberPlate = UserInput.GetUserInput<string>().ToUpper();
+        } while (!Vehicle.IsNumberPlateUnique(numberPlate));
+
+        Console.WriteLine("Enter type of colour");
+        string? colour = UserInput.GetUserInput<string>();
+        Console.WriteLine("What kind of fuel type");
+        string? fuelType = UserInput.GetUserInput<string>();
+        Console.WriteLine("Enter amount of wheels ");
+        int wheels = UserInput.GetUserInput<int>();
+        Console.WriteLine("Enter the year model");
+        int year = UserInput.GetUserInput<int>();
+        
+        if (vehicleType == GarageOptions.VehicleTypes.CAR)
+        {
+            Console.WriteLine("What is the engine layout");
+            string? engineLayout = UserInput.GetUserInput<string>();
+            var car = new Car(numberPlate, colour, fuelType, wheels, year, engineLayout);
             return (T)(Vehicle)car;
         }
 
-        if (vehicleType == GarageOptions.VehicleTypes.Motorcycle)
+        else if (vehicleType == GarageOptions.VehicleTypes.MOTORCYCLE)
         {
-            var motorcycle = new Motorcycle(
-                UserInput.GetUserInput<string>().ToUpper(),
-                UserInput.GetUserInput<string>(),
-                UserInput.GetUserInput<string>(),
-                UserInput.GetUserInput<int>(),
-                UserInput.GetUserInput<int>(),
-                UserInput.GetUserInput<int>()
-            );
+            Console.WriteLine("Enter the length");
+            int length = UserInput.GetUserInput<int>();
+
+            var motorcycle = new Motorcycle(numberPlate, colour, fuelType, wheels, year, length);
             return (T)(Vehicle)motorcycle;
         }
 

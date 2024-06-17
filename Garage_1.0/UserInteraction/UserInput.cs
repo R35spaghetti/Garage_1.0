@@ -35,7 +35,7 @@ public static class UserInput
     {
         Console.WriteLine("Enter value: ");
         var input = Console.ReadLine() ?? string.Empty;
-        Enum.TryParse(input, out T result);
+        Enum.TryParse(input.ToUpper(), out T result);
 
         return result;
     }

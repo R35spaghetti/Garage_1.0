@@ -9,6 +9,7 @@ public abstract class Vehicle : IVehicle
     private string? _fuelType;
     private int _wheels;
     private int _year;
+    private static readonly Dictionary<string, Vehicle> _UniqueVehiclesNumberPlates = new();
 
     protected Vehicle(string? numberPlate, string? colour, string? fuelType, int wheels, int year)
     {
@@ -17,8 +18,13 @@ public abstract class Vehicle : IVehicle
         _fuelType = fuelType;
         _wheels = wheels;
         _year = year;
+        
+        _UniqueVehiclesNumberPlates.Add(_numberPlate, this);
     }
-
+    public static bool IsNumberPlateUnique(string? numberPlate)
+    {
+        return numberPlate != null && !_UniqueVehiclesNumberPlates.ContainsKey(numberPlate);
+    }
     public string? NumberPlate 
     { 
         get => _numberPlate; 
