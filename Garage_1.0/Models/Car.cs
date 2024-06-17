@@ -4,17 +4,7 @@ public class Car : Vehicle
 {
     private string _engineLayout { get; set; }
     
-    public string EngineLayout
-    {
-        get => _engineLayout;
-        set => _engineLayout = value ?? throw new ArgumentNullException(nameof(value));
-    }
     
-    
-    public Car(string engineLayout)
-    {
-        _engineLayout = engineLayout;
-    }
     public override string ToString()
     {
         return $"Car\n" +
@@ -26,4 +16,8 @@ public class Car : Vehicle
                $"Engine layout: {_engineLayout}";
     }
 
+    public Car(string? numberPlate, string? colour, string? fuelType, int wheels, int year, string engineLayout) : base(numberPlate, colour, fuelType, wheels, year)
+    {
+        _engineLayout = engineLayout;
+    }
 }

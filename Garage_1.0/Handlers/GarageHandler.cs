@@ -110,69 +110,15 @@ public class GarageHandler : IGarageHandler
 
     public void PopulateGarage()
     {
-        var car1 = new Car("four-wheel driven")
-        {
-            NumberPlate = "ABC123",
-            Colour = "Red",
-            FuelType = "Gasoline",
-            Wheels = 4,
-            Year = 2020
-        };
+        var car1 = new Car("ABC123", "Red", "Gasoline", 4, 2020, "four-Wheel driven");
+        var car2 = new Car("DEF456", "Blue", "Electric", 4, 2021, "four-wheel driven");
+        var car3 = new Car("GHI789", "Red", "Petrol", 4, 2019, "Manual Transmission");
+        var car4 = new Car("JKL012", "Black", "Diesel", 4, 2020, "Automatic Transmission");
 
-        var car2 = new Car("four-wheel driven")
-        {
-            NumberPlate = "DEF456",
-            Colour = "Blue",
-            FuelType = "Electric",
-            Wheels = 4,
-            Year = 2021
-        };
-
-        var car3 = new Car("Manual Transmission")
-        {
-            NumberPlate = "GHI789",
-            Colour = "Red",
-            FuelType = "Petrol",
-            Wheels = 4,
-            Year = 2019
-        };
-
-        var car4 = new Car("Automatic Transmission")
-        {
-            NumberPlate = "JKL012",
-            Colour = "Black",
-            FuelType = "Diesel",
-            Wheels = 4,
-            Year = 2020
-        };
-        var motorcycle1 = new Motorcycle(100)
-        {
-            NumberPlate = "MNO345",
-            Colour = "White",
-            FuelType = "Gasoline",
-            Wheels = 2,
-            Year = 2022
-        };
-
-        var motorcycle2 = new Motorcycle(200)
-        {
-            NumberPlate = "PQR678",
-            Colour = "Silver",
-            FuelType = "Hybrid",
-            Wheels = 2,
-            Year = 2018
-        };
-
-        var motorcycle3 = new Motorcycle(300)
-        {
-            NumberPlate = "STU901",
-            Colour = "Yellow",
-            FuelType = "Electric",
-            Wheels = 2,
-            Year = 2023
-        };
-
-
+        var motorcycle1 = new Motorcycle("MNO345", "White", "Gasoline", 2, 2022, 100);
+        var motorcycle2 = new Motorcycle("PQR678", "Silver", "Hybrid", 2, 2018, 200);
+        var motorcycle3 = new Motorcycle("WRS678", "Silver", "Hybrid", 2, 2018, 200);
+        
         _garage.Vehicles[0] = car1;
         _garage.Vehicles[1] = car2;    
         _garage.Vehicles[2] = car3;    
