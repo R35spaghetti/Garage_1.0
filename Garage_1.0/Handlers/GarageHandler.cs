@@ -110,7 +110,7 @@ public class GarageHandler : IGarageHandler
 
     public void PopulateGarage()
     {
-        var car1 = new Vehicle
+        var car1 = new Car("four-wheel driven")
         {
             NumberPlate = "ABC123",
             Colour = "Red",

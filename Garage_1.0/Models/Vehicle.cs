@@ -2,7 +2,7 @@
 
 namespace Garage_1._0.Models;
 
-public class Vehicle : IVehicle
+public abstract class Vehicle : IVehicle
 {
     public required string? NumberPlate { get; set; }
     public string? Colour { get; set; }
