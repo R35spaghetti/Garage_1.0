@@ -2,7 +2,6 @@
 using Garage_1._0.Enums;
 using Garage_1._0.Features;
 using Garage_1._0.Handlers.Contracts;
-using Garage_1._0.Handlers.Delegates;
 using Garage_1._0.Models;
 using Garage_1._0.UserInteraction;
 
