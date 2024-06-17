@@ -37,7 +37,7 @@ public class InteractiveMenu
                     _garageHandler.ShowAllVehicles();
                     break;
                 case 2:
-                    _garageHandler.AddVehicle(UserInput.GetUserInput<Vehicle>());
+                    _garageHandler.AddVehicle<Vehicle>();
                     break;
                 case 3:
                     _garageHandler.RemoveVehicle(UserInput.GetUserInput<string>());

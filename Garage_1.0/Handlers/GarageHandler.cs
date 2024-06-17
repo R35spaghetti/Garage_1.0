@@ -76,18 +76,48 @@ public class GarageHandler : IGarageHandler
         }
     }
 
-    public void AddVehicle<T>(T vehicle) where T : Vehicle
+    public void AddVehicle<T>() where T : Vehicle
     {
+        object? vehicle = null;
+        Console.WriteLine("What vehicle to create?");
+        GarageOptions.VehicleTypes vehicleToAdd = UserInput.GetInputEnum<GarageOptions.VehicleTypes>();
+   
+        //foo
+        switch (vehicleToAdd)
+        {
+            case GarageOptions.VehicleTypes.Car:
+                Console.WriteLine("1. enter number plate" +
+                                  "2. Enter colour" +
+                                  "3. enter fuel type" +
+                                  "4. enter wheels" +
+                                  "5. enter year" +
+                                  "6. enter engine layout");
+                vehicle = VehicleFactory.CreateVehicle<T>(vehicleToAdd);
+                break;
+            case GarageOptions.VehicleTypes.Motorcycle:
+                Console.WriteLine("1. enter number plate" +
+                                  "2. Enter colour" +
+                                  "3. enter fuel type" +
+                                  "4. enter wheels" +
+                                  "5. enter year" +
+                                  "6. enter length");
+                vehicle = VehicleFactory.CreateVehicle<T>(vehicleToAdd);
+                break;
+            default:
+                Console.WriteLine("Vehicle doesn't exist");
+                break;
+        }
         int values = _garage.GarageSize;
         for(int i = 0; i < values; i++)
         {
             if (_garage.Vehicles[i] == null)
             {
                 _garage.Vehicles.SetValue(vehicle,i);
-
+                break;
             }
         }
     }
+    
 
     public void RemoveVehicle(string numberPlate)
     {
