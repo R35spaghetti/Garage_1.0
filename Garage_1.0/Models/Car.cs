@@ -2,11 +2,18 @@
 
 public class Car : Vehicle
 {
-    private string EngineLayout { get; set; }
+    private string _engineLayout { get; set; }
+    
+    public string EngineLayout
+    {
+        get => _engineLayout;
+        set => _engineLayout = value ?? throw new ArgumentNullException(nameof(value));
+    }
+    
     
     public Car(string engineLayout)
     {
-        EngineLayout = engineLayout;
+        _engineLayout = engineLayout;
     }
     public override string ToString()
     {
@@ -16,7 +23,7 @@ public class Car : Vehicle
                $"Fuel type: {FuelType}\n" +
                $"Wheels: {Wheels}\n" +
                $"Year: {Year}\n" +
-               $"Engine layout: {EngineLayout}";
+               $"Engine layout: {_engineLayout}";
     }
 
 }

@@ -2,11 +2,17 @@
 
 public class Motorcycle : Vehicle
 {
-    private int Length { get; set; }
+    private int _length { get; set; }
+
+    public int Length
+    {
+        get => _length;
+        set => _length = value;
+    }
 
     public Motorcycle(int length)
     {
-        Length = length;
+        _length = length;
     }
 
     public override string ToString()
@@ -17,6 +23,6 @@ public class Motorcycle : Vehicle
                $"Fuel type: {FuelType}\n" +
                $"Wheels: {Wheels}\n" +
                $"Year: {Year}\n" +
-               $"Length: {Length}";
+               $"Length: {_length}";
     }
 }
