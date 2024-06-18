@@ -6,7 +6,7 @@ public class Motorcycle : Vehicle
     
     public int Length 
     { 
-        get => Length; 
+        get => _length; 
         set => _length = value; 
     }
     public override string ToString()
@@ -17,7 +17,7 @@ public class Motorcycle : Vehicle
                $"Fuel type: {FuelType}\n" +
                $"Wheels: {Wheels}\n" +
                $"Year: {Year}\n" +
-               $"Length: {_length}";
+               $"Length: {Length}";
     }
 
     public Motorcycle(string? numberPlate, string? colour, string? fuelType, int wheels, int year, int length) : base(numberPlate, colour, fuelType, wheels, year)

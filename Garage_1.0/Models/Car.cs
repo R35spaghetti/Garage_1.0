@@ -6,7 +6,7 @@ public class Car : Vehicle
 
     public string EngineLayout
     {
-        get => EngineLayout; 
+        get => _engineLayout; 
         set => _engineLayout = value; 
     }
     
@@ -18,7 +18,7 @@ public class Car : Vehicle
                $"Fuel type: {FuelType}\n" +
                $"Wheels: {Wheels}\n" +
                $"Year: {Year}\n" +
-               $"Engine layout: {_engineLayout}";
+               $"Engine layout: {EngineLayout}";
     }
 
     public Car(string? numberPlate, string? colour, string? fuelType, int wheels, int year, string engineLayout) : base(numberPlate, colour, fuelType, wheels, year)
