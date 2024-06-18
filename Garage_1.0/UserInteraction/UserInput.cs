@@ -11,7 +11,7 @@ public static class UserInput
             Console.WriteLine($"Enter value of {typeof(T)}: ");
             input = Console.ReadLine();
 
-            isValid = ValidateUserInput(input, typeof(T));
+            isValid = ValidateUserInput(input);
             try
             {
                 input = (T)Convert.ChangeType(input, typeof(T));
@@ -28,7 +28,7 @@ public static class UserInput
         return (T)input;
     }
 
-    private static bool ValidateUserInput<T>(T input, Type type)
+    private static bool ValidateUserInput<T>(T input)
     {
         if (input.Equals(string.Empty) || input == null)
         {
