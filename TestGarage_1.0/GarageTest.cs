@@ -18,7 +18,7 @@ public class GarageTest
     }
 
     [Fact]
-    public void Add_Vehicle_Increases_Count_And_Adds_To_Array()
+    public void Add_Vehicle_And_Adds_To_Array()
     {
         //Arrange
         var expectedGarageSize = 3;
