@@ -146,7 +146,7 @@ public class GarageHandler : IGarageHandler
 
     public void FindNumberPlate(string numberPlate)
     {
-        Console.WriteLine(_garage.Vehicles.FirstOrDefault(x => x.NumberPlate != null && x.NumberPlate.Equals(numberPlate)));
+        Console.WriteLine(_garage.Vehicles.FirstOrDefault(x => (x?.NumberPlate ?? string.Empty)!= numberPlate));
     }
 
     public void FindVehicle()
