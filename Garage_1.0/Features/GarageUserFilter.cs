@@ -1,5 +1,6 @@
 using Garage_1._0.Enums;
 using Garage_1._0.Handlers.Delegates;
+using Garage_1._0.Models;
 using Garage_1._0.UserInteraction;
 
 namespace Garage_1._0.Features;
@@ -69,7 +70,6 @@ public class GarageUserFilter
                                 Console.WriteLine("Enter amount of engines");
                                var amountOfEngines = UserInput.GetUserInput<int>().ToString();
                                 baseDict["AmountOfEngines"] = amountOfEngines;
-                                
                                 break;  
                                 case GarageOptions.VehicleTypes.BUS: 
                                 Console.WriteLine("Enter amount of seats");
@@ -88,15 +88,13 @@ public class GarageUserFilter
             }
 
             iterateOptions -= 1;
-
             if (iterateOptions == 0)
             {
-                _garageFilters.ApplyVehicleFilters(baseDict);
+                Dictionary<string, Type> vehicleMapping = AddClassCheck(vehicleTypes);
+                _garageFilters.ApplyVehicleFilters(baseDict, vehicleMapping);
             }
         }
     }
-
-
     public List<char> IterateThroughOptions(string answer)
     {
         List<char> numbers = new List<char>();
@@ -106,5 +104,34 @@ public class GarageUserFilter
         }
 
         return numbers;
+    }
+
+    private Dictionary<string, Type> AddClassCheck(GarageOptions.VehicleTypes vehicleType)
+    {
+        Dictionary<string, Type> dictClass = new Dictionary<string, Type>();
+        switch (vehicleType)
+        {
+            case GarageOptions.VehicleTypes.VEHICLE:
+                dictClass["Class"] = typeof(Vehicle);
+                break;
+            case GarageOptions.VehicleTypes.CAR:
+                dictClass["Class"] = typeof(Car);
+                break;
+            case GarageOptions.VehicleTypes.MOTORCYCLE:
+                dictClass["Class"] = typeof(Motorcycle);
+                break;
+            case GarageOptions.VehicleTypes.BOAT:
+                dictClass["Class"] = typeof(Boat);
+                break;
+            case GarageOptions.VehicleTypes.BUS:
+                dictClass["Class"] = typeof(Bus);
+                break;
+            case GarageOptions.VehicleTypes.AIRPLANE:
+                dictClass["Class"] = typeof(Airplane);
+                break;
+          
+        }
+        
+        return dictClass;
     }
 }
