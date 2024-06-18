@@ -4,7 +4,11 @@ public class Motorcycle : Vehicle
 {
     private int _length { get; set; }
     
-    
+    public int Length 
+    { 
+        get => Length; 
+        set => _length = value; 
+    }
     public override string ToString()
     {
         return $"Motorcycle\n" +

@@ -3,7 +3,12 @@
 public class Car : Vehicle
 {
     private string _engineLayout { get; set; }
-    
+
+    public string EngineLayout
+    {
+        get => EngineLayout; 
+        set => _engineLayout = value; 
+    }
     
     public override string ToString()
     {
