@@ -15,6 +15,7 @@ public class GarageUserFilter
     //TODO kan ej urskilja på typ, söker alla röda om case 5 inte är uppfyllt.
     public void ApplyGarageFilterOptions(List<char> options, GarageOptions.VehicleTypes vehicleTypes)
     {
+        int iterateOptions = options.Count;
         string colour = "", fuelType = "", wheels = "", year = "";
 
         var baseDict = new Dictionary<string, string>
@@ -81,8 +82,12 @@ public class GarageUserFilter
                     break;
             }
 
+            iterateOptions -= 1;
 
-            _garageFilters.ApplyVehicleFilters(baseDict);
+            if (iterateOptions == 0)
+            {
+                _garageFilters.ApplyVehicleFilters(baseDict);
+            }
         }
     }
 
