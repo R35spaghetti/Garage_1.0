@@ -4,10 +4,11 @@ public static class GarageOptions
 {
     public enum VehicleTypes
     {
+        VEHICLE,
         CAR,
         MOTORCYCLE,
         BOAT,
         BUS,
-        AIRPLANE
+        AIRPLANE 
     }
 }

@@ -12,39 +12,18 @@ public class GarageUserFilter
     {
         _garageFilters = garageFilters;
     }
-
+    //TODO kan ej urskilja på typ, söker alla röda om case 5 inte är uppfyllt.
     public void ApplyGarageFilterOptions(List<char> options, GarageOptions.VehicleTypes vehicleTypes)
     {
-        string colour = "";
-        string fuelType = "";
-        string wheels = "";
-        string year = "";
+        string colour = "", fuelType = "", wheels = "", year = "";
 
-        if (vehicleTypes == GarageOptions.VehicleTypes.CAR)
-        {
-            GarageFilterCar(colour, fuelType, wheels, year, options);
-        }
-
-        if (vehicleTypes == GarageOptions.VehicleTypes.MOTORCYCLE)
-        {
-            GarageFilterMC(colour, fuelType, wheels, year, options);
-        }
-    }
-
-    private void GarageFilterMC(string colour, string fuelType, string wheels, string year, List<char> options)
-    {
-        string length = "";
-
-
-        Dictionary<string, string> userInput = new Dictionary<string, string>
+        var baseDict = new Dictionary<string, string>
         {
             { "Colour", colour },
             { "FuelType", fuelType },
             { "Wheels", wheels },
-            { "Year", year },
-            { "Length", length }
+            { "Year", year }
         };
-
 
         foreach (var item in options)
         {
@@ -53,83 +32,60 @@ public class GarageUserFilter
                 case '1':
                     Console.WriteLine("Enter what colour to search");
                     colour = UserInput.GetUserInput<string>();
+                    baseDict["Colour"] = colour;
                     break;
                 case '2':
                     Console.WriteLine("Enter what fuel type to search");
                     fuelType = UserInput.GetUserInput<string>();
+                    baseDict["FuelType"] = fuelType;
                     break;
                 case '3':
                     Console.WriteLine("Enter what wheels to search");
                     wheels = UserInput.GetUserInput<int>().ToString();
+                    baseDict["Wheels"] = wheels;
                     break;
                 case '4':
                     Console.WriteLine("Enter what year to search");
                     year = UserInput.GetUserInput<int>().ToString();
+                    baseDict["Year"] = year;
                     break;
                 case '5':
-                    Console.WriteLine("Enter length to search");
-                    length = UserInput.GetUserInput<int>().ToString();
+                    if (vehicleTypes != GarageOptions.VehicleTypes.VEHICLE)
+                    {
+                        switch (vehicleTypes)
+                        {
+                            case GarageOptions.VehicleTypes.CAR:
+                                var engineLayout = UserInput.GetUserInput<string>();
+                                baseDict["EngineLayout"] = engineLayout;
+                                break;
+                            case GarageOptions.VehicleTypes.MOTORCYCLE:
+                                var length = UserInput.GetUserInput<int>().ToString();
+                                baseDict["Length"] = length;
+                                break;
+                            case GarageOptions.VehicleTypes.BOAT:
+                               var amountOfEngines = UserInput.GetUserInput<int>().ToString();
+                                baseDict["AmountOfEngines"] = amountOfEngines;
+                                
+                                break;  
+                                case GarageOptions.VehicleTypes.BUS: 
+                                    var seats = UserInput.GetUserInput<int>().ToString();
+                                baseDict["Seats"] = seats;
+                                break;
+                            case GarageOptions.VehicleTypes.AIRPLANE:
+                               var wings = UserInput.GetUserInput<int>().ToString();
+                                baseDict["Wings"] = wings;
+                                break;
+                        }
+                    }
+
                     break;
             }
-        }
 
-        userInput["Colour"] = colour;
-        userInput["FuelType"] = fuelType;
-        userInput["Wheels"] = wheels;
-        userInput["Year"] = year;
-        userInput["Length"] = length;
-        _garageFilters.ApplyVehicleFilters(userInput);
+
+            _garageFilters.ApplyVehicleFilters(baseDict);
+        }
     }
 
-    private void GarageFilterCar(string colour, string fuelType, string wheels, string year, List<char> options)
-    {
-        string engineLayout = "";
-
-
-        Dictionary<string, string> userInput = new Dictionary<string, string>
-        {
-            { "Colour", colour },
-            { "FuelType", fuelType },
-            { "Wheels", wheels },
-            { "Year", year },
-            { "EngineLayout", engineLayout }
-        };
-
-
-        foreach (var item in options)
-        {
-            switch (item)
-            {
-                case '1':
-                    Console.WriteLine("Enter what colour to search");
-                    colour = UserInput.GetUserInput<string>();
-                    break;
-                case '2':
-                    Console.WriteLine("Enter what fuel type to search");
-                    fuelType = UserInput.GetUserInput<string>();
-                    break;
-                case '3':
-                    Console.WriteLine("Enter what wheels to search");
-                    wheels = UserInput.GetUserInput<int>().ToString();
-                    break;
-                case '4':
-                    Console.WriteLine("Enter what year to search");
-                    year = UserInput.GetUserInput<int>().ToString();
-                    break;
-                case '5':
-                    Console.WriteLine("Enter engine layout to search");
-                    engineLayout = UserInput.GetUserInput<string>();
-                    break;
-            }
-        }
-
-        userInput["Colour"] = colour;
-        userInput["FuelType"] = fuelType;
-        userInput["Wheels"] = wheels;
-        userInput["Year"] = year;
-        userInput["EngineLayout"] = engineLayout;
-        _garageFilters.ApplyVehicleFilters(userInput);
-    }
 
     public List<char> IterateThroughOptions(string answer)
     {
