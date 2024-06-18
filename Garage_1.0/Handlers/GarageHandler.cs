@@ -120,17 +120,17 @@ public class GarageHandler : IGarageHandler
 
     public void PopulateGarage()
     {
-        var car1 = new Car("ABC123", "Red", "Gasoline", 4, 2020, "four-Wheel driven");
-        var car2 = new Car("DEF456", "Blue", "Electric", 4, 2021, "four-wheel driven");
-        var car3 = new Car("GHI789", "Red", "Petrol", 4, 2019, "Manual Transmission");
-        var car4 = new Car("JKL012", "Black", "Diesel", 4, 2020, "Automatic Transmission");
+        var car1 = new Car("ABC123", "RED", "GASOLINE", 4, 2020, "FOUR-WHEEL DRIVEN");
+        var car2 = new Car("DEF456", "BLUE", "ELECTRIC", 4, 2021, "FOUR-WHEEL DRIVEN");
+        var car3 = new Car("GHI789", "RED", "PETROL", 4, 2019, "MANUAL TRANSMISSION");
+        var car4 = new Car("JKL012", "BLACK", "DIESEL", 4, 2020, "AUTOMATIC TRANSMISSION");
 
-        var motorcycle1 = new Motorcycle("MNO345", "White", "Gasoline", 2, 2022, 100);
-        var motorcycle2 = new Motorcycle("PQR678", "Red", "Hybrid", 2, 2018, 200);
-        var motorcycle3 = new Motorcycle("WRS678", "Silver", "Hybrid", 2, 2018, 200);
+        var motorcycle1 = new Motorcycle("MNO345", "WHITE", "GASOLINE", 2, 2022, 100);
+        var motorcycle2 = new Motorcycle("PQR678", "RED", "HYBRID", 2, 2018, 200);
+        var motorcycle3 = new Motorcycle("WRS678", "SILVER", "HYBRID", 2, 2018, 200);
 
-        var boat1 = new Boat("ORG132", "Red", "Oil", 2, 2000, 5);
-        var boat2 = new Boat("ORG138", "Red", "Oil", 2, 2000, 5);
+        var boat1 = new Boat("ORG132", "RED", "OIL", 2, 2000, 5);
+        var boat2 = new Boat("ORG138", "RED", "OIL", 2, 2000, 5);
             
         
         _garage.Vehicles[0] = car1;
