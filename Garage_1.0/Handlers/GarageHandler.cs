@@ -78,8 +78,13 @@ public class GarageHandler : IGarageHandler
 
     public void AddVehicle<T>() where T : Vehicle
     {
-        Console.WriteLine("You can add a motorcycle or a car, anything else will be interpreted as a car");
-        GarageOptions.VehicleTypes vehicleToAdd = UserInput.GetInputEnum<GarageOptions.VehicleTypes>();
+        Console.WriteLine("You can add a Car, Motorcycle, Bus, Boat or Airplane");
+        GarageOptions.VehicleTypes vehicleToAdd;
+        do
+        {
+            vehicleToAdd = UserInput.GetInputEnum<GarageOptions.VehicleTypes>();
+        } while (vehicleToAdd == GarageOptions.VehicleTypes.VEHICLE);
+
         Vehicle vehicle = VehicleFactory.CreateVehicle<T>(vehicleToAdd);
 
 

@@ -12,7 +12,7 @@ public static class VehicleFactory
         do
         {
             Console.WriteLine("Enter a unique number plate:");
-            numberPlate = UserInput.GetUserInput<string>().ToUpper();
+            numberPlate = UserInput.GetUserInput<string>();
         } while (!Vehicle.IsNumberPlateUnique(numberPlate));
 
         Console.WriteLine("Enter type of colour");

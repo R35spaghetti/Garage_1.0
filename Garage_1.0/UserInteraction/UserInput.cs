@@ -9,7 +9,7 @@ public static class UserInput
         do
         {
             Console.WriteLine($"Enter value of {typeof(T)}: ");
-            input = Console.ReadLine();
+            input = Console.ReadLine().ToUpper();
 
             isValid = ValidateUserInput(input);
             try
