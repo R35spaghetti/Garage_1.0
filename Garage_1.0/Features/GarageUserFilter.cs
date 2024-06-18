@@ -13,7 +13,6 @@ public class GarageUserFilter
     {
         _garageFilters = garageFilters;
     }
-    //TODO kan ej urskilja på typ, söker alla röda om case 5 inte är uppfyllt.
     public void ApplyGarageFilterOptions(List<char> options, GarageOptions.VehicleTypes vehicleTypes)
     {
         int iterateOptions = options.Count;
