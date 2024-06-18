@@ -56,23 +56,28 @@ public class GarageUserFilter
                         switch (vehicleTypes)
                         {
                             case GarageOptions.VehicleTypes.CAR:
+                                Console.WriteLine("Enter name of engine layout");
                                 var engineLayout = UserInput.GetUserInput<string>();
                                 baseDict["EngineLayout"] = engineLayout;
                                 break;
                             case GarageOptions.VehicleTypes.MOTORCYCLE:
+                                Console.WriteLine("Enter length");
                                 var length = UserInput.GetUserInput<int>().ToString();
                                 baseDict["Length"] = length;
                                 break;
                             case GarageOptions.VehicleTypes.BOAT:
+                                Console.WriteLine("Enter amount of engines");
                                var amountOfEngines = UserInput.GetUserInput<int>().ToString();
                                 baseDict["AmountOfEngines"] = amountOfEngines;
                                 
                                 break;  
                                 case GarageOptions.VehicleTypes.BUS: 
+                                Console.WriteLine("Enter amount of seats");
                                     var seats = UserInput.GetUserInput<int>().ToString();
                                 baseDict["Seats"] = seats;
                                 break;
                             case GarageOptions.VehicleTypes.AIRPLANE:
+                                Console.WriteLine("Enter amount of wings");
                                var wings = UserInput.GetUserInput<int>().ToString();
                                 baseDict["Wings"] = wings;
                                 break;
