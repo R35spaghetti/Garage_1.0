@@ -78,10 +78,9 @@ public class GarageHandler : IGarageHandler
 
     public void AddVehicle<T>() where T : Vehicle
     {
-        Vehicle? vehicle = null;
         Console.WriteLine("You can add a motorcycle or a car, anything else will be interpreted as a car");
         GarageOptions.VehicleTypes vehicleToAdd = UserInput.GetInputEnum<GarageOptions.VehicleTypes>();
-        vehicle = VehicleFactory.CreateVehicle<T>(vehicleToAdd);
+        Vehicle vehicle = VehicleFactory.CreateVehicle<T>(vehicleToAdd);
 
 
         int values = _garage.GarageSize;
