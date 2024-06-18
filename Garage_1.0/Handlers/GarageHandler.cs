@@ -81,19 +81,9 @@ public class GarageHandler : IGarageHandler
         Vehicle? vehicle = null;
         Console.WriteLine("You can add a motorcycle or a car, anything else will be interpreted as a car");
         GarageOptions.VehicleTypes vehicleToAdd = UserInput.GetInputEnum<GarageOptions.VehicleTypes>();
-   
-        switch (vehicleToAdd)
-        {
-            case GarageOptions.VehicleTypes.CAR:
-                vehicle = VehicleFactory.CreateVehicle<T>(vehicleToAdd);
-                break;
-            case GarageOptions.VehicleTypes.MOTORCYCLE:
-                vehicle = VehicleFactory.CreateVehicle<T>(vehicleToAdd);
-                break;
-            default:
-                Console.WriteLine("Vehicle doesn't exist");
-                break;
-        }
+        vehicle = VehicleFactory.CreateVehicle<T>(vehicleToAdd);
+
+
         int values = _garage.GarageSize;
         int? firstNullIndex = Enumerable.Range(0, values).FirstOrDefault(i => _garage.Vehicles[i] == null);
 
