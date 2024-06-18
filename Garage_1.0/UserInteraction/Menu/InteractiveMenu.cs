@@ -29,7 +29,8 @@ public class InteractiveMenu
                               $"5. Search for specific vehicle or vehicles\n" +
                               $"6. Populate the garage with vehicles\n" +
                               $"7. Edit the size of the garage.\n" +
-                              $"8. Exit ");
+                              $"8. Show vehicles and their amount in the garage\n" +
+                              $"9. Exit ");
             usrOperation = UserInput.GetUserInput<int>();
             switch (usrOperation)
             {
@@ -55,13 +56,16 @@ public class InteractiveMenu
                     _garageHandler.SetGarageCapacity(UserInput.GetUserInput<int>());
                     break;
                 case 8:
+                    _garageHandler.ShowVehicleTypes();
+                    break;
+                case 9:
                     break;
                 default:
                     Console.WriteLine("Invalid input, try again");
                     break;
                 
             }
-        } while (usrOperation != 8);
+        } while (usrOperation != 9);
         
     }
         

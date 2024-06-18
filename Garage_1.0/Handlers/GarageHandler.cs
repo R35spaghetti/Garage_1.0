@@ -42,38 +42,23 @@ public class GarageHandler : IGarageHandler
 
     public void ShowVehicleTypes()
     {
-        var cars = _garage.Vehicles.OfType<Car>();
-        var mcs = _garage.Vehicles.OfType<Motorcycle>();
-        var automobiles = cars as Car[] ?? cars.ToArray();
-        var motorcycles = mcs as Motorcycle[] ?? mcs.ToArray();
-        IEnumerable<object> vehiclesInGarage = new IEnumerable[] { automobiles, motorcycles };
-        int amountCars = automobiles.Count();
-        int amountMcs = motorcycles.Count();
-        try
+        var vehicles = _garage.Vehicles.OfType<Vehicle>();
+        var amountCars = vehicles.OfType<Car>();
+        var amountMotorcycles = vehicles.OfType<Motorcycle>();
+        var amountBuses = vehicles.OfType<Bus>();
+        var amountBoats = vehicles.OfType<Boat>();
+        var amountAirplanes = vehicles.OfType<Airplane>();
+        Console.WriteLine($"Cars:{amountCars.Count()}");
+        Console.WriteLine($"Motorcycles:{amountMotorcycles.Count()}");
+        Console.WriteLine($"Buses:{amountBuses.Count()}");
+        Console.WriteLine($"Boats:{amountBoats.Count()}");
+        Console.WriteLine($"Airplanes:{amountAirplanes.Count()}");
+        foreach (var vehicle in vehicles)
         {
-            Console.WriteLine($"Cars:{amountCars}\n" +
-                              $"Motorcycles:{amountMcs}\n" +
-                              $"_______________________");
-            foreach (var garageTypes in vehiclesInGarage)
-            {
-               
-                foreach (var currentVehicle in (IEnumerable)garageTypes)
-                {
-                    if (currentVehicle is Car)
-                    {
-                        Console.WriteLine($"{currentVehicle}\n");
-                    }
-                    else if (currentVehicle is Motorcycle)
-                    {
-                        Console.WriteLine($"{currentVehicle}\n");
-                    }
-                }
-            }
+
+            Console.WriteLine(vehicle);
         }
-        catch (InvalidCastException)
-        {
-            Console.WriteLine("Vehicle not found");
-        }
+        
     }
 
     public void AddVehicle<T>() where T : Vehicle
