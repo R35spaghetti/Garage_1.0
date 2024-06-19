@@ -8,7 +8,7 @@ public static class UserInput
         bool isValid;
         do
         {
-            Console.WriteLine($"Enter value of {typeof(T)}: ");
+            Console.WriteLine($"Enter value: ");
             input = Console.ReadLine().ToUpper();
 
             isValid = ValidateUserInput(input);
