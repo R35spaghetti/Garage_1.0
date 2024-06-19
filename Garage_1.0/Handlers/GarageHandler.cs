@@ -176,7 +176,7 @@ public class GarageHandler : IGarageHandler
     {
         Console.Clear();
         Console.WriteLine("What vehicle to filter?\n" +
-                          "Enter 1.Car, 2.Motorcycle, 3.Boat, 4.Bus, 5.Airplane or 0.Vehicle. Incorrect inputs will be interpreted as vehicle"); //foo
+                          "Enter 1.Car, 2.Motorcycle, 3.Boat, 4.Bus, 5.Airplane or 0.Vehicle. Incorrect inputs will be interpreted as vehicle");
         GarageOptions.VehicleTypes vehicleTypes = UserInput.GetInputEnum<GarageOptions.VehicleTypes>();
         string answer;
         HashSet<char> options;
@@ -256,7 +256,7 @@ public class GarageHandler : IGarageHandler
                                   "3. Wheels\n" +
                                   "4. Year\n" +
                                   "5. Wings\n" +
-                                  "It only accepts");
+                                  "It only accepts 1-5");
                 answer = UserInput.GetUserInput<string>();
                 options = _garageUserFilter.IterateThroughOptions(answer, vehicleTypes);
                 if (options.Count != 0)
