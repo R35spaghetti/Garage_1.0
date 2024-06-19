@@ -25,7 +25,7 @@ public class GarageHandler : IGarageHandler
         Console.Clear();
         var enumerateVehicles = _garage.GetEnumerator();
         using var disposeEnumerator = enumerateVehicles as IDisposable;
-        while (enumerateVehicles.MoveNext())
+        while (enumerateVehicles.MoveNext() && enumerateVehicles.Current != null)
         {
             try
             {
