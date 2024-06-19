@@ -65,25 +65,26 @@ public class GarageHandler : IGarageHandler
     public void AddVehicle<T>() where T : Vehicle
     {
         Console.Clear();
-        Console.WriteLine("You can add a Car, Motorcycle, Bus, Boat or an Airplane");
-        GarageOptions.VehicleTypes vehicleToAdd;
-        do
-        {
-            vehicleToAdd = UserInput.GetInputEnum<GarageOptions.VehicleTypes>();
-        } while (vehicleToAdd == GarageOptions.VehicleTypes.VEHICLE);
-
-        Vehicle vehicle = VehicleFactory.CreateVehicle<T>(vehicleToAdd);
-
-
         int values = _garage.GarageSize;
         int? firstNullIndex = Enumerable.Range(0, values).FirstOrDefault(i => _garage.Vehicles[i] == null);
-
-        if (firstNullIndex.HasValue && firstNullIndex.Value < values)
+        if (_garage.Vehicles[(int)firstNullIndex] == null)
         {
-            _garage.Vehicles[firstNullIndex.Value] = vehicle;
-        }
+            Console.WriteLine("You can add a 1. Car, 2. Motorcycle, 3. Boat, 4. Bus or 5. Airplane");
+            GarageOptions.VehicleTypes vehicleToAdd;
+            do
+            {
+                vehicleToAdd = UserInput.GetInputEnum<GarageOptions.VehicleTypes>();
+            } while (vehicleToAdd == GarageOptions.VehicleTypes.VEHICLE);
 
-        Console.WriteLine($"Added {vehicle.GetType().Name} with numberplate {vehicle.NumberPlate}\n");
+            Vehicle vehicle = VehicleFactory.CreateVehicle<T>(vehicleToAdd);
+            _garage.Vehicles[firstNullIndex.Value] = vehicle;
+            Console.WriteLine($"Added {vehicle.GetType().Name} with numberplate {vehicle.NumberPlate}\n");
+        }
+        else
+        {
+            Console.WriteLine("THE GARAGE IS FULL!\n");
+        }
+        
     }
     
 
@@ -119,7 +120,6 @@ public class GarageHandler : IGarageHandler
 
         var boat1 = new Boat("ORG132", "RED", "OIL", 2, 2000, 5);
         var boat2 = new Boat("ORG138", "RED", "OIL", 2, 2000, 5);
-            
         
         _garage.Vehicles[0] = car1;
         _garage.Vehicles[1] = car2;    
