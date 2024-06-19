@@ -163,10 +163,14 @@ public class GarageHandler : IGarageHandler
                                   "3. Wheels\n" +
                                   "4. Year\n" +
                                   "5. Engine layout\n" +
-                                  "Enter other values to exit to menu");
+                                  "It only accepts 1-5");
                 answer = UserInput.GetUserInput<string>();
                 options = _garageUserFilter.IterateThroughOptions(answer, vehicleTypes);
-                _garageUserFilter.ApplyGarageFilterOptions(options, vehicleTypes);
+                if (options.Count != 0)
+                {
+                    _garageUserFilter.ApplyGarageFilterOptions(options, vehicleTypes);
+                }
+
                 break;
 
             case GarageOptions.VehicleTypes.MOTORCYCLE:
@@ -176,10 +180,14 @@ public class GarageHandler : IGarageHandler
                                   "3. Wheels\n" +
                                   "4. Year\n" +
                                   "5. Length\n" +
-                                  "Enter other values to exit to menu");
+                                  "It only accepts 1-5");
                 answer = UserInput.GetUserInput<string>();
                 options = _garageUserFilter.IterateThroughOptions(answer, vehicleTypes);
-                _garageUserFilter.ApplyGarageFilterOptions(options, vehicleTypes);
+                if (options.Count != 0)
+                {
+                    _garageUserFilter.ApplyGarageFilterOptions(options, vehicleTypes);
+                }
+
                 break;
 
             case GarageOptions.VehicleTypes.BOAT:
@@ -189,10 +197,14 @@ public class GarageHandler : IGarageHandler
                                   "3. Wheels\n" +
                                   "4. Year\n" +
                                   "5. Amount of engines\n" +
-                                  "Enter other values to exit to menu");
+                                  "It only accepts 1-5");
                 answer = UserInput.GetUserInput<string>();
                 options = _garageUserFilter.IterateThroughOptions(answer, vehicleTypes);
-                _garageUserFilter.ApplyGarageFilterOptions(options, vehicleTypes);
+                if (options.Count != 0)
+                {
+                    _garageUserFilter.ApplyGarageFilterOptions(options, vehicleTypes);
+                }
+
                 break;
             case GarageOptions.VehicleTypes.BUS:
                 Console.WriteLine("What filters do you want to use?\n" +
@@ -201,10 +213,14 @@ public class GarageHandler : IGarageHandler
                                   "3. Wheels\n" +
                                   "4. Year\n" +
                                   "5. Seats\n" +
-                                  "Enter other values to exit to menu");
+                                  "It only accepts 1-5");
                 answer = UserInput.GetUserInput<string>();
                 options = _garageUserFilter.IterateThroughOptions(answer, vehicleTypes);
-                _garageUserFilter.ApplyGarageFilterOptions(options, vehicleTypes);
+                if (options.Count != 0)
+                {
+                    _garageUserFilter.ApplyGarageFilterOptions(options, vehicleTypes);
+                }
+
                 break;
             case GarageOptions.VehicleTypes.AIRPLANE:
                 Console.WriteLine("What filters do you want to use?\n" +
@@ -213,21 +229,29 @@ public class GarageHandler : IGarageHandler
                                   "3. Wheels\n" +
                                   "4. Year\n" +
                                   "5. Wings\n" +
-                                  "Enter other values to exit to menu");
+                                  "It only accepts");
                 answer = UserInput.GetUserInput<string>();
                 options = _garageUserFilter.IterateThroughOptions(answer, vehicleTypes);
-                _garageUserFilter.ApplyGarageFilterOptions(options, vehicleTypes);
-                break; 
-                case GarageOptions.VehicleTypes.VEHICLE:
+                if (options.Count != 0)
+                {
+                    _garageUserFilter.ApplyGarageFilterOptions(options, vehicleTypes);
+                }
+
+                break;
+            case GarageOptions.VehicleTypes.VEHICLE:
                 Console.WriteLine("What filters do you want to use?\n" +
                                   "1. Colour\n" +
                                   "2. Fuel type\n" +
                                   "3. Wheels\n" +
                                   "4. Year\n" +
-                                  "Enter other values to exit to menu");
+                                  "It only accepts 1-4");
                 answer = UserInput.GetUserInput<string>();
                 options = _garageUserFilter.IterateThroughOptions(answer, vehicleTypes);
-                _garageUserFilter.ApplyGarageFilterOptions(options, vehicleTypes);
+                if (options.Count != 0)
+                {
+                    _garageUserFilter.ApplyGarageFilterOptions(options, vehicleTypes);
+                }
+
                 break;
 
 
