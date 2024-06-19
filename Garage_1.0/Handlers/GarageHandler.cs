@@ -117,27 +117,49 @@ public class GarageHandler : IGarageHandler
 
     public void PopulateGarage()
     {
-        var car1 = new Car("ABC123", "RED", "GASOLINE", 4, 2020, "FOUR-WHEEL DRIVEN");
-        var car2 = new Car("DEF456", "BLUE", "ELECTRIC", 4, 2021, "FOUR-WHEEL DRIVEN");
-        var car3 = new Car("GHI789", "RED", "PETROL", 4, 2019, "MANUAL TRANSMISSION");
-        var car4 = new Car("JKL012", "BLACK", "DIESEL", 4, 2020, "AUTOMATIC TRANSMISSION");
+        try
+        {
+            var car1 = new Car("ABC123", "RED", "GASOLINE", 4, 2020, "FOUR-WHEEL DRIVEN");
+            var car2 = new Car("DEF456", "BLUE", "ELECTRIC", 4, 2021, "FOUR-WHEEL DRIVEN");
+            var car3 = new Car("GHI789", "RED", "PETROL", 4, 2019, "MANUAL TRANSMISSION");
+            var car4 = new Car("JKL012", "BLACK", "DIESEL", 4, 2020, "AUTOMATIC TRANSMISSION");
 
-        var motorcycle1 = new Motorcycle("MNO345", "WHITE", "GASOLINE", 2, 2022, 100);
-        var motorcycle2 = new Motorcycle("PQR678", "RED", "HYBRID", 2, 2018, 200);
-        var motorcycle3 = new Motorcycle("WRS678", "SILVER", "HYBRID", 2, 2018, 200);
+            var motorcycle1 = new Motorcycle("MNO345", "WHITE", "GASOLINE", 2, 2022, 100);
+            var motorcycle2 = new Motorcycle("PQR678", "RED", "HYBRID", 2, 2018, 200);
+            var motorcycle3 = new Motorcycle("WRS678", "SILVER", "HYBRID", 2, 2018, 200);
 
-        var boat1 = new Boat("ORG132", "RED", "OIL", 2, 2000, 5);
-        var boat2 = new Boat("ORG138", "RED", "OIL", 2, 2000, 5);
-        
-        _garage.Vehicles[0] = car1;
-        _garage.Vehicles[1] = car2;    
-        _garage.Vehicles[2] = car3;    
-        _garage.Vehicles[3] = car4;    
-        _garage.Vehicles[4] = motorcycle1;    
-        _garage.Vehicles[5] = motorcycle2;    
-        _garage.Vehicles[6] = motorcycle3;    
-        _garage.Vehicles[7] = boat1;    
-        _garage.Vehicles[8] = boat2;    
+            var boat1 = new Boat("ORG132", "RED", "OIL", 2, 2000, 5);
+            var boat2 = new Boat("LOP135", "RED", "OIL", 2, 2000, 5);
+            var bus1 = new Bus("ORG138", "RED", "OIL", 2, 2000, 5);
+            var airplane1 = new Airplane("DGF231", "RED", "OIL", 2, 2000, 5);
+
+            _garage.Vehicles[0] = car1;
+            _garage.Vehicles[1] = car2;
+            _garage.Vehicles[2] = car3;
+            _garage.Vehicles[3] = car4;
+            _garage.Vehicles[4] = motorcycle1;
+            _garage.Vehicles[5] = motorcycle2;
+            _garage.Vehicles[6] = motorcycle3;
+            _garage.Vehicles[7] = boat1;
+            _garage.Vehicles[8] = boat2;
+            _garage.Vehicles[9] = bus1;
+            _garage.Vehicles[10] = airplane1;
+            Console.WriteLine("Populated the garage with vehicles.");
+            var countVehicles = _garage.Vehicles.Where(x => x != null);
+            int space = _garage.GarageSize - countVehicles.Count();
+            Console.WriteLine($"Garage space left: {space}");
+
+        }
+        catch (IndexOutOfRangeException)
+        {
+            var countVehicles = _garage.Vehicles.Where(x => x != null);
+            int space = _garage.GarageSize - countVehicles.Count();
+            Console.WriteLine($"Not enough garage space, space left: {space}");
+        }
+        catch (ArgumentException)
+        {
+            Console.WriteLine("Remove the duplicates for the populate function to work");
+        }
     }
 
     public void FindNumberPlate(string numberPlate)
