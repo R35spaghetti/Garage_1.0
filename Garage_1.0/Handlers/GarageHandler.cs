@@ -73,6 +73,7 @@ public class GarageHandler : IGarageHandler
             Vehicle vehicle = VehicleFactory.CreateVehicle<T>(vehicleToAdd);
             _garage.Vehicles[firstNullIndex.Value] = vehicle;
             Console.WriteLine($"Added {vehicle.GetType().Name} with numberplate {vehicle.NumberPlate}\n");
+            CountSpaceLeft();
         }
         else
         {
@@ -93,6 +94,7 @@ public class GarageHandler : IGarageHandler
                 {
                     _garage.Vehicles.SetValue(null, i);
                     Console.WriteLine($"Removed {numberPlate}");
+                    CountSpaceLeft();
                     break;
                 }
             }
@@ -113,7 +115,7 @@ public class GarageHandler : IGarageHandler
         else
         {
             _garage.GarageSize = size;
-            countSpaceLeft();
+            CountSpaceLeft();
         }
 
     }
@@ -149,13 +151,13 @@ public class GarageHandler : IGarageHandler
             _garage.Vehicles[9] = bus1;
             _garage.Vehicles[10] = airplane1;
             Console.WriteLine("Populated the garage with vehicles.");
-            countSpaceLeft();
+            CountSpaceLeft();
 
         }
         catch (IndexOutOfRangeException)
         {
             Console.WriteLine("Not enough garage space");
-            countSpaceLeft();
+            CountSpaceLeft();
 
         }
         catch (ArgumentException)
@@ -286,7 +288,7 @@ public class GarageHandler : IGarageHandler
         }
     }
 
-    private void countSpaceLeft()
+    private void CountSpaceLeft()
     {
         var countVehicles = _garage.Vehicles.Where(x => x != null);
         int space = _garage.GarageSize - countVehicles.Count();
