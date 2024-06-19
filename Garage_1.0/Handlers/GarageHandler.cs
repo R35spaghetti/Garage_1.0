@@ -93,9 +93,18 @@ public class GarageHandler : IGarageHandler
         int indexes = _garage.GarageSize;
         for (int i = 0; i < indexes; i++)
         {
-            if (numberPlate.Equals(_garage.Vehicles[i].NumberPlate))
+            try
             {
-                _garage.Vehicles.SetValue(null, i);
+                if (numberPlate.Equals(_garage.Vehicles[i].NumberPlate))
+                {
+                    _garage.Vehicles.SetValue(null, i);
+                    Console.WriteLine($"Removed {numberPlate}");
+                    break;
+                }
+            }
+            catch (Exception)
+            {
+                Console.WriteLine($"Couldn't find {numberPlate}");
                 break;
             }
         }
