@@ -25,7 +25,7 @@ public class InteractiveMenu
                               $"2. Add a vehicle\n" +
                               $"3. Remove a vehicle\n" +
                               $"4. Find a vehicle based on the number plate\n" +
-                              $"5. Search for specific vehicle or vehicles\n" +
+                              $"5. Search for specific vehicles\n" +
                               $"6. Populate the garage with vehicles\n" +
                               $"7. Edit the size of the garage, press 0 to return to the main menu.\n" +
                               $"8. Show vehicles and their amount in the garage\n" +
