@@ -63,7 +63,8 @@ public class GarageHandler : IGarageHandler
 
     public void AddVehicle<T>() where T : Vehicle
     {
-        Console.WriteLine("You can add a Car, Motorcycle, Bus, Boat or Airplane");
+        Console.Clear();
+        Console.WriteLine("You can add a Car, Motorcycle, Bus, Boat or an Airplane");
         GarageOptions.VehicleTypes vehicleToAdd;
         do
         {
@@ -81,6 +82,7 @@ public class GarageHandler : IGarageHandler
             _garage.Vehicles[firstNullIndex.Value] = vehicle;
         }
 
+        Console.WriteLine($"Added {vehicle.GetType().Name} with numberplate {vehicle.NumberPlate}\n");
     }
     
 
