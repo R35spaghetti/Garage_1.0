@@ -23,6 +23,7 @@ public class GarageHandler : IGarageHandler
     
     public void ShowAllVehicles()
     {
+        Console.Clear();
         var enumerateVehicles = _garage.GetEnumerator();
         using var disposeEnumerator = enumerateVehicles as IDisposable;
         while (enumerateVehicles.MoveNext())
