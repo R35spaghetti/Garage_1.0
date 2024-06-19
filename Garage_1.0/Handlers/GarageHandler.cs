@@ -42,6 +42,7 @@ public class GarageHandler : IGarageHandler
 
     public void ShowVehicleTypes()
     {
+        Console.Clear();
         var vehicles = _garage.Vehicles.OfType<Vehicle>();
         var amountCars = vehicles.OfType<Car>();
         var amountMotorcycles = vehicles.OfType<Motorcycle>();
@@ -112,11 +113,15 @@ public class GarageHandler : IGarageHandler
 
     public void SetGarageCapacity(int size)
     {
+        Console.WriteLine("Enter the size of your garage");
         _garage.GarageSize = size;
+        countSpaceLeft();
+
     }
 
     public void PopulateGarage()
     {
+        Console.Clear();
         try
         {
             var car1 = new Car("ABC123", "RED", "GASOLINE", 4, 2020, "FOUR-WHEEL DRIVEN");
@@ -145,16 +150,14 @@ public class GarageHandler : IGarageHandler
             _garage.Vehicles[9] = bus1;
             _garage.Vehicles[10] = airplane1;
             Console.WriteLine("Populated the garage with vehicles.");
-            var countVehicles = _garage.Vehicles.Where(x => x != null);
-            int space = _garage.GarageSize - countVehicles.Count();
-            Console.WriteLine($"Garage space left: {space}");
+            countSpaceLeft();
 
         }
         catch (IndexOutOfRangeException)
         {
-            var countVehicles = _garage.Vehicles.Where(x => x != null);
-            int space = _garage.GarageSize - countVehicles.Count();
-            Console.WriteLine($"Not enough garage space, space left: {space}");
+            Console.WriteLine("Not enough garage space");
+            countSpaceLeft();
+
         }
         catch (ArgumentException)
         {
@@ -170,6 +173,7 @@ public class GarageHandler : IGarageHandler
 
     public void FindVehicle()
     {
+        Console.Clear();
         Console.WriteLine("What vehicle to filter?\n" +
                           "Enter 1.Car, 2.Motorcycle, 3.Boat, 4.Bus, 5.Airplane or 0.Vehicle. Incorrect inputs will be interpreted as vehicle"); //foo
         GarageOptions.VehicleTypes vehicleTypes = UserInput.GetInputEnum<GarageOptions.VehicleTypes>();
@@ -281,5 +285,12 @@ public class GarageHandler : IGarageHandler
                 Console.WriteLine("Invalid selection");
                 break;
         }
+    }
+
+    private void countSpaceLeft()
+    {
+        var countVehicles = _garage.Vehicles.Where(x => x != null);
+        int space = _garage.GarageSize - countVehicles.Count();
+        Console.WriteLine($"Garage space left: {space}");
     }
 }

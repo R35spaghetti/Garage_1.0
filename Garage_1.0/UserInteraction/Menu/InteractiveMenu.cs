@@ -15,7 +15,6 @@ public class InteractiveMenu
 
     public void MainMenu()
     {
-        Console.WriteLine("Welcome to the garage!\n");
         int usrOperation;
         do
         {
@@ -41,9 +40,11 @@ public class InteractiveMenu
                     _garageHandler.AddVehicle<Vehicle>();
                     break;
                 case 3:
+                    Console.Clear();
                     _garageHandler.RemoveVehicle(UserInput.GetUserInput<string>());
                     break;
                 case 4:
+                    Console.Clear();
                     _garageHandler.FindNumberPlate(UserInput.GetUserInput<string>());
                     break;
                 case 5:
