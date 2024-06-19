@@ -15,7 +15,7 @@ public static class UserInput
             try
             {
                 input = (T)Convert.ChangeType(input, typeof(T));
-                if (input is IComparable comparableInput && comparableInput.CompareTo(0) < 0)
+                if (input is int and IComparable comparableInput && comparableInput.CompareTo(0) < 0)
                 {
                     Console.WriteLine("Invalid format");
                     isValid = false;
