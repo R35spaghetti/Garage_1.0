@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using Garage_1._0.Enums;
+﻿using Garage_1._0.Enums;
 using Garage_1._0.Features;
 using Garage_1._0.Handlers.Contracts;
 using Garage_1._0.Models;
@@ -166,7 +165,7 @@ public class GarageHandler : IGarageHandler
                                   "5. Engine layout\n" +
                                   "Enter other values to exit to menu");
                 answer = UserInput.GetUserInput<string>();
-                options = _garageUserFilter.IterateThroughOptions(answer);
+                options = _garageUserFilter.IterateThroughOptions(answer, vehicleTypes);
                 _garageUserFilter.ApplyGarageFilterOptions(options, vehicleTypes);
                 break;
 
@@ -179,7 +178,7 @@ public class GarageHandler : IGarageHandler
                                   "5. Length\n" +
                                   "Enter other values to exit to menu");
                 answer = UserInput.GetUserInput<string>();
-                options = _garageUserFilter.IterateThroughOptions(answer);
+                options = _garageUserFilter.IterateThroughOptions(answer, vehicleTypes);
                 _garageUserFilter.ApplyGarageFilterOptions(options, vehicleTypes);
                 break;
 
@@ -192,7 +191,7 @@ public class GarageHandler : IGarageHandler
                                   "5. Amount of engines\n" +
                                   "Enter other values to exit to menu");
                 answer = UserInput.GetUserInput<string>();
-                options = _garageUserFilter.IterateThroughOptions(answer);
+                options = _garageUserFilter.IterateThroughOptions(answer, vehicleTypes);
                 _garageUserFilter.ApplyGarageFilterOptions(options, vehicleTypes);
                 break;
             case GarageOptions.VehicleTypes.BUS:
@@ -204,7 +203,7 @@ public class GarageHandler : IGarageHandler
                                   "5. Seats\n" +
                                   "Enter other values to exit to menu");
                 answer = UserInput.GetUserInput<string>();
-                options = _garageUserFilter.IterateThroughOptions(answer);
+                options = _garageUserFilter.IterateThroughOptions(answer, vehicleTypes);
                 _garageUserFilter.ApplyGarageFilterOptions(options, vehicleTypes);
                 break;
             case GarageOptions.VehicleTypes.AIRPLANE:
@@ -216,7 +215,7 @@ public class GarageHandler : IGarageHandler
                                   "5. Wings\n" +
                                   "Enter other values to exit to menu");
                 answer = UserInput.GetUserInput<string>();
-                options = _garageUserFilter.IterateThroughOptions(answer);
+                options = _garageUserFilter.IterateThroughOptions(answer, vehicleTypes);
                 _garageUserFilter.ApplyGarageFilterOptions(options, vehicleTypes);
                 break; 
                 case GarageOptions.VehicleTypes.VEHICLE:
@@ -227,7 +226,7 @@ public class GarageHandler : IGarageHandler
                                   "4. Year\n" +
                                   "Enter other values to exit to menu");
                 answer = UserInput.GetUserInput<string>();
-                options = _garageUserFilter.IterateThroughOptions(answer);
+                options = _garageUserFilter.IterateThroughOptions(answer, vehicleTypes);
                 _garageUserFilter.ApplyGarageFilterOptions(options, vehicleTypes);
                 break;
 

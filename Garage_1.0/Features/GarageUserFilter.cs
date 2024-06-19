@@ -94,7 +94,7 @@ public class GarageUserFilter
             }
         }
     }
-    public HashSet<char> IterateThroughOptions(string answer)
+    public HashSet<char> IterateThroughOptions(string answer, GarageOptions.VehicleTypes vehicleTypes)
     {
         HashSet<char> numbers = new HashSet<char>();
         bool valid = answer.All(Char.IsDigit);
@@ -102,13 +102,27 @@ public class GarageUserFilter
         {
             foreach (var item in answer)
             {
-                if (item >= 1 && item <= 5)
+                if (vehicleTypes == GarageOptions.VehicleTypes.VEHICLE)
                 {
+                    if (item < '1' || item > '4') continue;
                     numbers.Add(item);
+                    if (numbers.Count == 4)
+                    {
+                        break;
+                    }
+                }
+                else
+                {
+                    if (item < '1' || item > '5') continue;
+                    numbers.Add(item);
+                    if (numbers.Count == 5)
+                    {
+                        break;
+                    }
                 }
             }
         }
-
+        
         return numbers;
     }
 
