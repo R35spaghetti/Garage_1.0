@@ -152,7 +152,7 @@ public class GarageHandler : IGarageHandler
                           "Enter 1.Car, 2.Motorcycle, 3.Boat, 4.Bus, 5.Airplane or 0.Vehicle. Incorrect inputs will be interpreted as vehicle"); //foo
         GarageOptions.VehicleTypes vehicleTypes = UserInput.GetInputEnum<GarageOptions.VehicleTypes>();
         string answer;
-        HashSet<char> options = new HashSet<char>();
+        HashSet<char> options;
 
         switch (vehicleTypes)
         {
