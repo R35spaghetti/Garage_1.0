@@ -15,6 +15,11 @@ public static class UserInput
             try
             {
                 input = (T)Convert.ChangeType(input, typeof(T));
+                if (input is IComparable comparableInput && comparableInput.CompareTo(0) < 0)
+                {
+                    Console.WriteLine("Value must be 0 or higher");
+                    isValid = false;
+                }
             }
             catch
             {
@@ -22,8 +27,6 @@ public static class UserInput
                 isValid = false;
             }
         } while (!isValid);
-
-     
 
         return (T)input;
     }
