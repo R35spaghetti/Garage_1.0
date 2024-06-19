@@ -150,10 +150,10 @@ public class GarageHandler : IGarageHandler
     public void FindVehicle()
     {
         Console.WriteLine("What vehicle to filter?\n" +
-                          "Enter Car, Motorcycle, Boat, Bus, Airplane or Vehicle. Incorrect inputs will be interpreted as vehicle"); //foo
+                          "Enter 1.Car, 2.Motorcycle, 3.Boat, 4.Bus, 5.Airplane or 0.Vehicle. Incorrect inputs will be interpreted as vehicle"); //foo
         GarageOptions.VehicleTypes vehicleTypes = UserInput.GetInputEnum<GarageOptions.VehicleTypes>();
         string answer;
-        List<char> options = new List<char>();
+        HashSet<char> options = new HashSet<char>();
 
         switch (vehicleTypes)
         {
@@ -163,7 +163,8 @@ public class GarageHandler : IGarageHandler
                                   "2. Fuel type\n" +
                                   "3. Wheels\n" +
                                   "4. Year\n" +
-                                  "5. Engine layout");
+                                  "5. Engine layout\n" +
+                                  "Enter other values to exit to menu");
                 answer = UserInput.GetUserInput<string>();
                 options = _garageUserFilter.IterateThroughOptions(answer);
                 _garageUserFilter.ApplyGarageFilterOptions(options, vehicleTypes);
@@ -175,7 +176,8 @@ public class GarageHandler : IGarageHandler
                                   "2. Fuel type\n" +
                                   "3. Wheels\n" +
                                   "4. Year\n" +
-                                  "5. Length");
+                                  "5. Length\n" +
+                                  "Enter other values to exit to menu");
                 answer = UserInput.GetUserInput<string>();
                 options = _garageUserFilter.IterateThroughOptions(answer);
                 _garageUserFilter.ApplyGarageFilterOptions(options, vehicleTypes);
@@ -187,7 +189,8 @@ public class GarageHandler : IGarageHandler
                                   "2. Fuel type\n" +
                                   "3. Wheels\n" +
                                   "4. Year\n" +
-                                  "5. Amount of engines");
+                                  "5. Amount of engines\n" +
+                                  "Enter other values to exit to menu");
                 answer = UserInput.GetUserInput<string>();
                 options = _garageUserFilter.IterateThroughOptions(answer);
                 _garageUserFilter.ApplyGarageFilterOptions(options, vehicleTypes);
@@ -198,7 +201,8 @@ public class GarageHandler : IGarageHandler
                                   "2. Fuel type\n" +
                                   "3. Wheels\n" +
                                   "4. Year\n" +
-                                  "5. Seats");
+                                  "5. Seats\n" +
+                                  "Enter other values to exit to menu");
                 answer = UserInput.GetUserInput<string>();
                 options = _garageUserFilter.IterateThroughOptions(answer);
                 _garageUserFilter.ApplyGarageFilterOptions(options, vehicleTypes);
@@ -209,7 +213,8 @@ public class GarageHandler : IGarageHandler
                                   "2. Fuel type\n" +
                                   "3. Wheels\n" +
                                   "4. Year\n" +
-                                  "5. Wings");
+                                  "5. Wings\n" +
+                                  "Enter other values to exit to menu");
                 answer = UserInput.GetUserInput<string>();
                 options = _garageUserFilter.IterateThroughOptions(answer);
                 _garageUserFilter.ApplyGarageFilterOptions(options, vehicleTypes);
@@ -219,7 +224,8 @@ public class GarageHandler : IGarageHandler
                                   "1. Colour\n" +
                                   "2. Fuel type\n" +
                                   "3. Wheels\n" +
-                                  "4. Year");
+                                  "4. Year\n" +
+                                  "Enter other values to exit to menu");
                 answer = UserInput.GetUserInput<string>();
                 options = _garageUserFilter.IterateThroughOptions(answer);
                 _garageUserFilter.ApplyGarageFilterOptions(options, vehicleTypes);

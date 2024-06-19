@@ -13,7 +13,7 @@ public class GarageUserFilter
     {
         _garageFilters = garageFilters;
     }
-    public void ApplyGarageFilterOptions(List<char> options, GarageOptions.VehicleTypes vehicleTypes)
+    public void ApplyGarageFilterOptions(HashSet<char> options, GarageOptions.VehicleTypes vehicleTypes)
     {
         int iterateOptions = options.Count;
         string colour = "", fuelType = "", wheels = "", year = "";
@@ -94,12 +94,19 @@ public class GarageUserFilter
             }
         }
     }
-    public List<char> IterateThroughOptions(string answer)
+    public HashSet<char> IterateThroughOptions(string answer)
     {
-        List<char> numbers = new List<char>();
-        foreach (var item in answer)
+        HashSet<char> numbers = new HashSet<char>();
+        bool valid = answer.All(Char.IsDigit);
+        if (valid)
         {
-            numbers.Add(item);
+            foreach (var item in answer)
+            {
+                if (item >= 1 && item <= 5)
+                {
+                    numbers.Add(item);
+                }
+            }
         }
 
         return numbers;
