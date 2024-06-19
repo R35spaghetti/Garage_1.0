@@ -54,12 +54,6 @@ public class GarageHandler : IGarageHandler
         Console.WriteLine($"Buses:{amountBuses.Count()}");
         Console.WriteLine($"Boats:{amountBoats.Count()}");
         Console.WriteLine($"Airplanes:{amountAirplanes.Count()}");
-        foreach (var vehicle in vehicles)
-        {
-
-            Console.WriteLine(vehicle);
-        }
-        
     }
 
     public void AddVehicle<T>() where T : Vehicle
