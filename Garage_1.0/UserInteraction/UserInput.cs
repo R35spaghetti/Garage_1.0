@@ -9,8 +9,8 @@ public static class UserInput
         do
         {
             Console.WriteLine($"Enter value: ");
-            input = Console.ReadLine().ToUpper();
-
+            input = Console.ReadLine().ToUpper().Trim();
+            
             isValid = ValidateUserInput(input);
             try
             {
