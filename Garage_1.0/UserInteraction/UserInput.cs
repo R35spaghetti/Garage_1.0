@@ -17,7 +17,7 @@ public static class UserInput
                 input = (T)Convert.ChangeType(input, typeof(T));
                 if (input is IComparable comparableInput && comparableInput.CompareTo(0) < 0)
                 {
-                    Console.WriteLine("Value must be 0 or higher");
+                    Console.WriteLine("Invalid format");
                     isValid = false;
                 }
             }

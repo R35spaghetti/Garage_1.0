@@ -107,10 +107,8 @@ public class GarageHandler : IGarageHandler
 
     public void SetGarageCapacity(int size)
     {
-        Console.WriteLine("Enter the size of your garage");
         if (size == 0)
         {
-            Console.WriteLine("Invalid input, returning to menu");
         }
         else
         {
