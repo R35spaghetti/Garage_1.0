@@ -30,4 +30,16 @@ public class GarageManager<T> where T : Vehicle
             _garageTypes.Add(vehicleType, garage);
         }
     }
+
+    public Garage<T> InitializeGarage()
+    {
+        Garage<T> garage = new Garage<T>(0);
+        foreach (var item in _garageTypes.Values)
+        {
+            garage.GarageSize += item.GarageSize;
+            garage.Vehicles = item.Vehicles.ToArray();
+        }
+        
+        return garage;
+    }
 }
