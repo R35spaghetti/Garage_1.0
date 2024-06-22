@@ -1,12 +1,13 @@
 ﻿using Garage_1._0.Enums;
 using Garage_1._0.Models;
+using Garage_1._0.Models.Contracts;
 using Garage_1._0.UserInteraction;
 
 namespace Garage_1._0.Features;
 
 public static class VehicleFactory
 {
-    public static T CreateVehicle<T>(GarageOptions.VehicleTypes vehicleType) where T : Vehicle
+    public static T CreateVehicle<T>(GarageOptions.VehicleTypes vehicleType) where T : Vehicle, IVehicle
     {
         string? numberPlate;
         do
