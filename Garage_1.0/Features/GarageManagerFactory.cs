@@ -4,9 +4,9 @@ using Garage_1._0.Models;
 
 namespace Garage_1._0.Features;
 
-public static class GarageManagerFactory
+public class GarageManagerFactory
 {
-    public static GarageManager<T> CreateGarageManager<T>(GarageOptions.VehicleTypes vehicleType) where T : Vehicle
+    public  GarageManager<T> CreateGarageManager<T>(GarageOptions.VehicleTypes vehicleType) where T : Vehicle
     {
         var garageManager = new GarageManager<T>();
         var garage = GarageFactory.CreateGarage<T>();
