@@ -1,9 +1,10 @@
 using Garage_1._0.Enums;
 using Garage_1._0.Models;
+using Garage_1._0.Models.Contracts;
 
 namespace Garage_1._0.Features.Managers;
 
-public class GarageManager<T> where T : Vehicle
+public class GarageManager<T> where T : IVehicle
 {
     private readonly Dictionary<GarageOptions.VehicleTypes, Garage<T>> _garageTypes = new();
 
