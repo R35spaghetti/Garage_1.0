@@ -7,6 +7,5 @@ public interface IVehicle
     string? FuelType { get; set; }
     int Wheels { get; set; }
     int Year { get; set; } 
-    string ToString();
     
 }
