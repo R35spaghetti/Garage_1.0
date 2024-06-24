@@ -1,5 +1,6 @@
 ﻿using Garage_1._0.Enums;
 using Garage_1._0.Features;
+using Garage_1._0.Features.Managers;
 using Garage_1._0.Handlers.Contracts;
 using Garage_1._0.Models;
 using Garage_1._0.UserInteraction;
@@ -10,15 +11,51 @@ public class GarageHandler : IGarageHandler
 {
     
     private Garage<Vehicle> _garage { get;}
-    
     private GarageUserFilter _garageUserFilter { get; }
+    private GarageManager _garageManager { get; }
     
-    public GarageHandler(Garage<Vehicle> garage, GarageUserFilter garageUserFilter)
+    public GarageHandler(Garage<Vehicle> garage, GarageUserFilter garageUserFilter, GarageManager garageManager)
     {
         _garage = garage;
         _garageUserFilter = garageUserFilter;
+        _garageManager = garageManager;
+
+
     }
 
+    public void AddGarage(GarageOptions.VehicleTypes vehicleType)
+    {
+        switch (vehicleType)
+        {
+            case GarageOptions.VehicleTypes.CAR:
+              _garageManager.AddGarage(vehicleType, GarageFactory.CreateGarage<Car>());
+                break;
+            case GarageOptions.VehicleTypes.MOTORCYCLE:
+                _garageManager.AddGarage(vehicleType, GarageFactory.CreateGarage<Motorcycle>());
+                break;
+            case GarageOptions.VehicleTypes.BOAT:
+                _garageManager.AddGarage(vehicleType, GarageFactory.CreateGarage<Boat>());
+                break;
+            case GarageOptions.VehicleTypes.BUS:
+                _garageManager.AddGarage(vehicleType, GarageFactory.CreateGarage<Bus>());
+                break;
+            case GarageOptions.VehicleTypes.AIRPLANE:
+                _garageManager.AddGarage(vehicleType, GarageFactory.CreateGarage<Airplane>());
+                break;
+            default:
+                Console.WriteLine("Can't add that garage");
+                break;
+        }
+    }
+
+
+    
+    public void SwitchGarage<T>(GarageOptions.VehicleTypes vehicleType) where T : Vehicle
+    {
+    
+        //TODO
+
+    }
     
     public void ShowAllVehicles()
     {
@@ -119,7 +156,7 @@ public class GarageHandler : IGarageHandler
         }
 
     }
-
+    
     public void PopulateGarage()
     {
         Console.Clear();
@@ -152,7 +189,6 @@ public class GarageHandler : IGarageHandler
             _garage.Vehicles[10] = airplane1;
             Console.WriteLine("Populated the garage with vehicles.");
             CountSpaceLeft();
-
         }
         catch (IndexOutOfRangeException)
         {
@@ -287,6 +323,13 @@ public class GarageHandler : IGarageHandler
                 break;
         }
     }
+
+    public void CurrentGarage()
+    {
+        var garageType = _garage.GetType();
+        Console.WriteLine(garageType);
+    }
+
 
     private void CountSpaceLeft()
     {

@@ -1,3 +1,4 @@
+using Garage_1._0.Enums;
 using Garage_1._0.Handlers;
 using Garage_1._0.Models;
 
@@ -11,15 +12,14 @@ public class InteractiveMenu
     {
         _garageHandler = garageHandler;
     }
-    
+
 
     public void MainMenu()
     {
         int usrOperation;
         do
         {
-
-
+            _garageHandler.CurrentGarage();
             Console.WriteLine($"Choose the following:\n" +
                               $"1. Show all vehicles\n" +
                               $"2. Add a vehicle\n" +
@@ -29,7 +29,9 @@ public class InteractiveMenu
                               $"6. Populate the garage with vehicles\n" +
                               $"7. Edit the size of the garage, press 0 to return to the main menu.\n" +
                               $"8. Show vehicles and their amount in the garage\n" +
-                              $"9. Exit ");
+                              $"9. Switch garage\n" +
+                              $"10. Add garage\n" +
+                              $"0. Exit ");
             usrOperation = UserInput.GetUserInput<int>();
             switch (usrOperation)
             {
@@ -60,14 +62,19 @@ public class InteractiveMenu
                     _garageHandler.ShowVehicleTypes();
                     break;
                 case 9:
+                    Console.WriteLine("What garage do you want to switch to");
+                    _garageHandler.SwitchGarage<Vehicle>(UserInput.GetInputEnum<GarageOptions.VehicleTypes>());
+                    break;
+                case 10:
+                    Console.WriteLine("What garage to add");
+                    _garageHandler.AddGarage(UserInput.GetInputEnum<GarageOptions.VehicleTypes>());
+                    break;
+                case 0:
                     break;
                 default:
                     Console.WriteLine("Invalid input, try again");
                     break;
-                
             }
-        } while (usrOperation != 9);
-        
+        } while (usrOperation != 0);
     }
-        
 }

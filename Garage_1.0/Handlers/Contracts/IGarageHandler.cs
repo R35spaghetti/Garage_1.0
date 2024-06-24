@@ -1,4 +1,5 @@
-﻿using Garage_1._0.Models;
+﻿using Garage_1._0.Enums;
+using Garage_1._0.Models;
 
 namespace Garage_1._0.Handlers.Contracts;
 
@@ -12,4 +13,8 @@ public interface IGarageHandler
     void PopulateGarage();
     void FindNumberPlate(string numberPlate);
     void FindVehicle();
+    void SwitchGarage<T>(GarageOptions.VehicleTypes vehicleType) where T : Vehicle;
+    void CurrentGarage();
+    void AddGarage(GarageOptions.VehicleTypes vehicleType);
+
 }
