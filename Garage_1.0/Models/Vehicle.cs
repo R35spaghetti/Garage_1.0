@@ -4,14 +4,14 @@ namespace Garage_1._0.Models;
 
 public abstract class Vehicle : IVehicle
 {
-    private string? _numberPlate;
-    private string? _colour;
-    private string? _fuelType;
+    private string _numberPlate;
+    private string _colour;
+    private string _fuelType;
     private int _wheels;
     private int _year;
     private static readonly Dictionary<string, Vehicle> _UniqueVehiclesNumberPlates = new();
 
-    protected Vehicle(string? numberPlate, string? colour, string? fuelType, int wheels, int year)
+    protected Vehicle(string numberPlate, string colour, string fuelType, int wheels, int year)
     {
         _numberPlate = numberPlate;
         _colour = colour;
@@ -25,19 +25,19 @@ public abstract class Vehicle : IVehicle
     {
         return numberPlate != null && !_UniqueVehiclesNumberPlates.ContainsKey(numberPlate);
     }
-    public string? NumberPlate 
+    public string NumberPlate 
     { 
         get => _numberPlate; 
         set => _numberPlate = value; 
     }
 
-    public string? Colour 
+    public string Colour 
     { 
         get => _colour; 
         set => _colour = value; 
     }
 
-    public string? FuelType 
+    public string FuelType 
     { 
         get => _fuelType; 
         set => _fuelType = value; 

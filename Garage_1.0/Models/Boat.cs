@@ -2,7 +2,7 @@
 
 public class Boat : Vehicle
 {
-    private int _amountOfEngines { get; set; }
+    private int _amountOfEngines;
 
     public int AmountOfEngines
     {

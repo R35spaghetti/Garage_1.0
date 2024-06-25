@@ -5,8 +5,8 @@ namespace Garage_1._0.Models;
 
 public class Garage<T> : IGarage<T> where T : IVehicle
 {
-    private int _garageSize {get; set; }
-    private T[] _vehicles { get; set; }
+    private int _garageSize;
+    private T[] _vehicles;
 
 
     public int GarageSize
@@ -23,13 +23,17 @@ public class Garage<T> : IGarage<T> where T : IVehicle
 
     public Garage(int garageSize)
     {
+        if (garageSize < 0)
+        {
+            throw new ArgumentException("Garage size must be greater than or equal to zero.", nameof(garageSize));
+        }
         _garageSize = garageSize;
         _vehicles = new T[garageSize];
     }
 
     public IEnumerator GetEnumerator()
     {
-        return _vehicles.GetEnumerator();
+        return (IEnumerator<T>)_vehicles.GetEnumerator();
     }
 
 

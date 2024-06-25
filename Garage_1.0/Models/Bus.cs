@@ -2,7 +2,7 @@
 
 public class Bus : Vehicle
 {
-    private int _seats { get; set; }
+    private int _seats;
 
     public int Seats
     {

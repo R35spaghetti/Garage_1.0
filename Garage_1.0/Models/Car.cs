@@ -2,7 +2,7 @@
 
 public class Car : Vehicle
 {
-    private string _engineLayout { get; set; }
+    private string _engineLayout;
 
     public string EngineLayout
     {

@@ -125,7 +125,7 @@ public class GarageUserFilter
         
         return numbers;
     }
-
+    //Bara ett nyckelvärde, byt ut
     private Dictionary<string, Type> AddClassCheck(GarageOptions.VehicleTypes vehicleType)
     {
         Dictionary<string, Type> dictClass = new Dictionary<string, Type>();

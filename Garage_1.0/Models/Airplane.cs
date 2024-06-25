@@ -2,7 +2,7 @@
 
 public class Airplane : Vehicle
 {
-    private int _wings { get; set; }
+    private int _wings;
 
     public int Wings
     {

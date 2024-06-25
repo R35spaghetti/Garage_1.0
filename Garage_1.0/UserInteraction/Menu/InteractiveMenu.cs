@@ -1,13 +1,13 @@
-using Garage_1._0.Handlers;
+using Garage_1._0.Handlers.Contracts;
 using Garage_1._0.Models;
 
 namespace Garage_1._0.UserInteraction.Menu;
 
 public class InteractiveMenu
 {
-    private GarageHandler _garageHandler { get; }
+    private IGarageHandler _garageHandler { get; }
 
-    public InteractiveMenu(GarageHandler garageHandler)
+    public InteractiveMenu(IGarageHandler garageHandler)
     {
         _garageHandler = garageHandler;
     }

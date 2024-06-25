@@ -2,7 +2,7 @@
 
 public class Motorcycle : Vehicle
 {
-    private int _length { get; set; }
+    private int _length;
     
     public int Length 
     { 
